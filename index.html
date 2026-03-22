@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="getRx gives vets, surgeons, and traveling physicians a fully compliant digital prescription pad — including controlled substances. Write and send any Rx in under 60 seconds.">
 <title>getRx — The Future of Prescribing</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -159,6 +160,43 @@ body.has-pointer #cursor-ring{display:block}
 
 .nav-right{display:flex;align-items:center;gap:10px}
 
+/* ── LOGIN DROPDOWN ── */
+.login-dropdown{position:relative}
+.login-dropdown:hover .login-menu,
+.login-dropdown.open .login-menu{opacity:1;transform:translateY(0);pointer-events:all}
+.login-menu{
+  position:absolute;top:calc(100% + 10px);right:0;
+  background:rgba(5,17,31,0.98);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border:1px solid rgba(0,201,167,0.18);
+  border-radius:12px;padding:8px;min-width:200px;
+  opacity:0;transform:translateY(-6px);
+  transition:opacity 0.2s,transform 0.2s;
+  pointer-events:none;z-index:600;
+  box-shadow:0 16px 48px rgba(0,0,0,0.5);
+}
+.login-menu::before{
+  content:'';position:absolute;top:-5px;right:24px;
+  width:10px;height:10px;background:rgba(5,17,31,0.98);
+  border-left:1px solid rgba(0,201,167,0.18);
+  border-top:1px solid rgba(0,201,167,0.18);
+  transform:rotate(45deg);
+}
+.login-menu-item{
+  display:flex;align-items:center;gap:10px;
+  padding:11px 14px;border-radius:8px;
+  text-decoration:none;transition:background 0.15s;
+}
+.login-menu-item:hover{background:rgba(0,201,167,0.07)}
+.login-menu-item.disabled{opacity:0.5;cursor:default;pointer-events:none}
+.login-menu-icon{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.login-menu-icon.teal{background:rgba(0,201,167,0.12);border:1px solid rgba(0,201,167,0.22)}
+.login-menu-icon.violet{background:rgba(139,92,246,0.12);border:1px solid rgba(139,92,246,0.22)}
+.login-menu-icon svg{width:14px;height:14px}
+.login-menu-label{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;color:var(--white);line-height:1}
+.login-menu-sub{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:0.06em;margin-top:2px}
+.login-menu-divider{height:1px;background:rgba(0,201,167,0.08);margin:6px 0}
+
 .btn-ghost{
   background:transparent;
   border:1px solid rgba(255,255,255,0.1);
@@ -166,6 +204,7 @@ body.has-pointer #cursor-ring{display:block}
   padding:9px 20px;border-radius:9px;
   font-family:'DM Sans',sans-serif;font-size:13.5px;
   transition:all 0.2s;text-decoration:none;letter-spacing:0.01em;
+  cursor:pointer;
 }
 .btn-ghost:hover{border-color:rgba(0,201,167,0.35);color:var(--white);background:rgba(0,201,167,0.05)}
 
@@ -507,6 +546,7 @@ footer{border-top:1px solid rgba(0,201,167,0.08);padding:48px 56px}
   .nav-links{display:none}
   .hamburger{display:flex}
   .nav-right .btn-ghost{display:none}
+  .nav-right .login-dropdown{display:none}
   .hero{padding:48px 28px 64px}
   .hero-inner{grid-template-columns:1fr;gap:48px}
   .hero-visual{order:-1}
@@ -650,7 +690,30 @@ footer{border-top:1px solid rgba(0,201,167,0.08);padding:48px 56px}
     <li><a href="https://home.getrx.com/us/">About</a></li>
   </ul>
   <div class="nav-right">
-    <a href="http://www.getrx.com/prescribers" class="btn-ghost">Log In</a>
+    <div class="login-dropdown" id="login-dropdown">
+      <a href="#" class="btn-ghost" id="login-btn">Log In ▾</a>
+      <div class="login-menu">
+        <a href="http://www.getrx.com/prescribers" class="login-menu-item">
+          <div class="login-menu-icon teal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#00c9a7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div>
+            <div class="login-menu-label">Prescriber Login</div>
+            <div class="login-menu-sub">Prescriber portal</div>
+          </div>
+        </a>
+        <div class="login-menu-divider"></div>
+        <div class="login-menu-item disabled">
+          <div class="login-menu-icon violet">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#a78fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div>
+            <div class="login-menu-label" style="color:var(--violet2)">Patient Login</div>
+            <div class="login-menu-sub">Coming soon</div>
+          </div>
+        </div>
+      </div>
+    </div>
     <a href="https://home.getrx.com/prescriber/" class="btn-nav-cta">Get Started</a>
   </div>
   <button class="hamburger" id="hamburger" aria-label="Open menu">
@@ -1060,7 +1123,7 @@ footer{border-top:1px solid rgba(0,201,167,0.08);padding:48px 56px}
           <span class="logo-tagline">Prescriptions, reimagined</span>
         </div>
       </a>
-      <div class="footer-copy">© 2025 getRx — All rights reserved.</div>
+      <div class="footer-copy">© 2026 getRx — All rights reserved.</div>
     </div>
     <nav class="footer-links">
       <a href="https://home.getrx.com/us/">About</a>
@@ -1073,6 +1136,14 @@ footer{border-top:1px solid rgba(0,201,167,0.08);padding:48px 56px}
 </footer>
 
 <script>
+/* ── LOGIN DROPDOWN ── */
+const loginBtn=document.getElementById('login-btn');
+const loginDrop=document.getElementById('login-dropdown');
+if(loginBtn&&loginDrop){
+  loginBtn.addEventListener('click',e=>{e.preventDefault();loginDrop.classList.toggle('open')});
+  document.addEventListener('click',e=>{if(!loginDrop.contains(e.target))loginDrop.classList.remove('open')});
+}
+
 /* ── HAMBURGER ── */
 const ham=document.getElementById('hamburger');
 const mMenu=document.getElementById('mobile-menu');
