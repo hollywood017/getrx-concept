@@ -35,14 +35,11 @@ body{
   overflow-x:hidden;
 }
 
-/* cursor — desktop only */
-@media(hover:hover) and (pointer:fine){
-  body{cursor:none}
-  #cursor,#cursor-ring{display:block}
-}
-@media(hover:none),(pointer:coarse){
-  #cursor,#cursor-ring{display:none!important}
-}
+/* cursor — hidden everywhere; JS adds .has-pointer to body only on real mouse devices */
+#cursor,#cursor-ring{display:none}
+body.has-pointer{cursor:none}
+body.has-pointer #cursor{display:block}
+body.has-pointer #cursor-ring{display:block}
 
 #cursor{
   position:fixed;width:10px;height:10px;
@@ -50,14 +47,14 @@ body{
   pointer-events:none;z-index:9999;
   transform:translate(-50%,-50%);
   transition:width 0.3s,height 0.3s;
-  mix-blend-mode:screen;display:none;
+  mix-blend-mode:screen;
 }
 #cursor-ring{
   position:fixed;width:36px;height:36px;
   border:1px solid rgba(0,201,167,0.5);border-radius:50%;
   pointer-events:none;z-index:9998;
   transform:translate(-50%,-50%);
-  transition:width 0.3s,height 0.3s,border-color 0.3s;display:none;
+  transition:width 0.3s,height 0.3s,border-color 0.3s;
 }
 
 /* canvas */
@@ -518,33 +515,9 @@ section{position:relative;z-index:1}
 
 /* ── AUDIENCE ── */
 .audience-section{padding:0 0 110px}
-.audience-cards{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.aud-card{
-  border-radius:24px;padding:52px 44px;
-  position:relative;overflow:hidden;text-decoration:none;display:block;
-  transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
-}
-.aud-card:hover{transform:translateY(-8px)}
-.aud-card-prescriber{background:linear-gradient(145deg,rgba(0,201,167,0.1) 0%,rgba(0,201,167,0.03) 100%);border:1px solid rgba(0,201,167,0.2)}
-.aud-card-prescriber::after{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;background:radial-gradient(circle,rgba(0,201,167,0.12),transparent 65%);border-radius:50%;pointer-events:none}
-.aud-card-patient{background:linear-gradient(145deg,rgba(0,212,255,0.08) 0%,rgba(0,212,255,0.02) 100%);border:1px solid rgba(0,212,255,0.18)}
-.aud-card-patient::after{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;background:radial-gradient(circle,rgba(0,212,255,0.1),transparent 65%);border-radius:50%;pointer-events:none}
-.aud-tag{display:inline-flex;align-items:center;gap:7px;padding:5px 12px;border-radius:100px;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:28px;position:relative;z-index:1}
-.tag-teal{background:rgba(0,201,167,0.14);color:var(--teal);border:1px solid rgba(0,201,167,0.22)}
-.tag-cyan{background:rgba(0,212,255,0.1);color:var(--cyan);border:1px solid rgba(0,212,255,0.2)}
-.aud-title{font-family:'Syne',sans-serif;font-size:30px;font-weight:800;letter-spacing:-0.03em;color:var(--white);margin-bottom:14px;position:relative;z-index:1}
-.aud-desc{font-size:14px;color:var(--muted2);line-height:1.75;font-weight:300;margin-bottom:28px;position:relative;z-index:1}
-.aud-perks{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:36px;position:relative;z-index:1}
-.aud-perks li{display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(238,246,255,0.75);font-weight:300}
-.check-wrap{width:19px;height:19px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center}
-.check-teal{background:rgba(0,201,167,0.18);border:1px solid rgba(0,201,167,0.25)}
-.check-cyan{background:rgba(0,212,255,0.14);border:1px solid rgba(0,212,255,0.2)}
-.check-wrap svg{width:10px;height:10px}
-.aud-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;text-decoration:none;transition:all 0.25s;position:relative;z-index:1}
-.aud-btn-teal{background:rgba(0,201,167,0.12);border:1px solid rgba(0,201,167,0.25);color:var(--teal2)}
-.aud-btn-teal:hover{background:rgba(0,201,167,0.22);border-color:var(--teal)}
-.aud-btn-cyan{background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.22);color:var(--cyan)}
-.aud-btn-cyan:hover{background:rgba(0,212,255,0.16);border-color:var(--cyan)}
+
+/* prescriber type grid */
+.prescriber-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 
 /* ── TRUST ── */
 .trust-section{padding:0 0 110px}
@@ -592,61 +565,50 @@ footer{border-top:1px solid rgba(0,201,167,0.1);padding:48px 56px}
 .reveal-delay-2{transition-delay:0.2s}
 .reveal-delay-3{transition-delay:0.3s}
 
-/* ════════════════════════════════════════
-   TABLET  768px – 1024px
-════════════════════════════════════════ */
+/* ════════════════════════
+   TABLET  768–1024px
+════════════════════════ */
 @media(max-width:1024px){
+  .prescriber-grid{grid-template-columns:1fr 1fr}
   nav{padding:0 28px}
   .nav-links{display:none}
   .hamburger{display:flex}
   .nav-right .btn-ghost{display:none}
-
   .hero{padding:48px 28px 64px}
   .hero-inner{grid-template-columns:1fr;gap:48px}
   .hero-visual{order:-1}
   .phone-scene{width:220px}
   .badge-top{right:-70px}
   .badge-bottom{left:-70px}
-
   .hero-stats{gap:0}
   .stat-item{padding-right:20px}
   .stat-item:not(:first-child):not(:last-child){padding-left:20px}
   .stat-item:last-child{padding-left:20px}
-
   .container{padding:0 28px}
   .section-divider{margin:0 28px}
-
   .process-section{padding:80px 0}
   .process-flow{grid-template-columns:1fr;gap:14px}
   .process-arrow{display:none}
-
   .rx-demo-section{padding:0 0 80px}
   .rx-demo-inner{grid-template-columns:1fr;gap:48px}
-
   .features-section{padding:0 0 80px}
   .features-layout{grid-template-columns:1fr;gap:48px}
   .features-grid{grid-template-columns:1fr 1fr}
   .features-phone-side{order:-1}
   .features-phone-shell{width:200px}
-
   .audience-section{padding:0 0 80px}
-  .audience-cards{grid-template-columns:1fr;gap:16px}
-  .aud-card{padding:40px 32px}
-
   .trust-section{padding:0 0 80px}
   .trust-strip{flex-wrap:wrap;padding:32px 28px;gap:20px}
   .trust-sep{display:none}
   .trust-item{flex:calc(50% - 10px);min-width:200px}
-
   .cta-section{padding:0 0 80px}
   .cta-wrap{padding:64px 40px}
-
   footer{padding:36px 28px}
 }
 
-/* ════════════════════════════════════════
+/* ════════════════════════
    MOBILE  < 768px
-════════════════════════════════════════ */
+════════════════════════ */
 @media(max-width:767px){
   nav{padding:0 20px;height:64px}
   .logo-text{font-size:18px}
@@ -655,117 +617,67 @@ footer{border-top:1px solid rgba(0,201,167,0.1);padding:48px 56px}
   .nav-right{display:none}
   .mobile-menu{top:64px}
   .ticker{margin-top:64px}
-
   .ticker-item{padding:0 24px;font-size:11px}
-
-  .hero{
-    padding:36px 20px 56px;
-    min-height:auto;
-  }
+  .hero{padding:36px 20px 56px;min-height:auto}
   .hero-inner{grid-template-columns:1fr;gap:36px}
   .hero-visual{order:-1}
-
-  /* phone: centered, smaller, no side badges */
   .phone-scene{width:180px;margin:0 auto}
   .badge-top,.badge-bottom,.live-pill{display:none}
   .phone-halo,.phone-halo-2{inset:-40px}
-
   .hero-eyebrow{font-size:10px;padding:6px 12px;margin-bottom:20px}
   .hero-headline{font-size:clamp(36px,9vw,52px);margin-bottom:18px}
   .hero-sub{font-size:15px;margin-bottom:28px;max-width:100%}
-
   .hero-actions{flex-direction:column;align-items:stretch;gap:12px}
-  .btn-primary-hero,.btn-secondary-hero{
-    text-align:center;justify-content:center;
-    padding:16px 24px;font-size:15px;width:100%;
-  }
-
-  .hero-stats{
-    display:grid;grid-template-columns:1fr 1fr;
-    gap:0;margin-top:32px;padding-top:28px;
-    border-top:1px solid rgba(0,201,167,0.12);
-  }
-  .stat-item{
-    flex:none;
-    padding:16px 0;
-    border-right:none!important;
-    border-bottom:1px solid rgba(0,201,167,0.08);
-    padding-left:0!important;padding-right:0!important;
-    text-align:center;
-  }
-  /* 3rd stat spans full width */
+  .btn-primary-hero,.btn-secondary-hero{text-align:center;justify-content:center;padding:16px 24px;font-size:15px;width:100%}
+  .hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:32px;padding-top:28px;border-top:1px solid rgba(0,201,167,0.12)}
+  .stat-item{flex:none;padding:16px 0;border-right:none!important;border-bottom:1px solid rgba(0,201,167,0.08);padding-left:0!important;padding-right:0!important;text-align:center}
   .stat-item:nth-child(3){grid-column:1/-1;border-bottom:none}
-  .stat-number{font-size:26px}
-
+  .stat-number{font-size:22px}
   .container{padding:0 20px}
   .section-divider{margin:0 20px}
-
   .process-section{padding:64px 0}
   .process-header{margin-bottom:48px}
   .process-flow{grid-template-columns:1fr;gap:12px}
   .process-arrow{display:none}
   .process-card{padding:28px 24px}
   .process-num{font-size:60px;top:8px;right:16px}
-
   .rx-demo-section{padding:0 0 64px}
   .rx-demo-section[style]{padding-top:64px!important}
   .rx-demo-inner{grid-template-columns:1fr;gap:36px}
   .rx-demo-visual{padding:24px 20px}
   .rx-header{flex-direction:column;align-items:flex-start;gap:8px;margin-bottom:20px;padding-bottom:16px}
-
-  /* checklist items in demo */
-  .rx-demo-left div[style*="flex-direction:column"]{gap:12px!important}
-  .rx-demo-left div[style*="flex-direction:column"] > div{gap:10px!important}
-  .rx-demo-left div[style*="flex-direction:column"] span{font-size:14px!important}
-
   .features-section{padding:0 0 64px}
   .features-section[style]{padding-top:64px!important}
   .features-layout{grid-template-columns:1fr;gap:36px}
   .features-grid{grid-template-columns:1fr;gap:10px}
   .features-phone-side{order:-1}
   .features-phone-shell{width:180px;margin:0 auto}
-
   .audience-section{padding:0 0 64px}
   .audience-section[style]{padding-top:64px!important}
-  .audience-cards{grid-template-columns:1fr;gap:14px}
-  .aud-card{padding:32px 24px;border-radius:20px}
-  .aud-title{font-size:26px}
-  .aud-desc{font-size:14px}
-
+  .prescriber-grid{grid-template-columns:1fr!important}
   .trust-section{padding:0 0 64px}
   .trust-section[style]{padding-top:64px!important}
-  .trust-strip{
-    flex-direction:column;padding:24px 20px;gap:16px;border-radius:18px;
-  }
+  .trust-strip{flex-direction:column;padding:24px 20px;gap:16px;border-radius:18px}
   .trust-sep{display:none}
   .trust-item{flex:none;width:100%}
-
   .cta-section{padding:0 0 80px}
   .cta-wrap{padding:48px 24px;border-radius:20px}
   .cta-heading{font-size:clamp(28px,7vw,40px)}
   .cta-sub{font-size:15px;margin-bottom:32px}
   .cta-actions{flex-direction:column;align-items:stretch}
-  .cta-actions .btn-primary-hero,
-  .cta-actions .btn-secondary-hero{width:100%;text-align:center;justify-content:center}
-
+  .cta-actions .btn-primary-hero,.cta-actions .btn-secondary-hero{width:100%;text-align:center;justify-content:center}
   footer{padding:32px 20px}
   .footer-inner{flex-direction:column;align-items:flex-start;gap:20px}
   .footer-links{gap:20px}
-
-  /* audience header inside section */
-  .audience-section > .container > div[style*="text-align:center"]{margin-bottom:36px!important}
-
   .section-heading{font-size:clamp(26px,7vw,38px)}
 }
 
-/* ── very small screens ── */
 @media(max-width:380px){
   .hero-headline{font-size:32px}
   .hero-stats{grid-template-columns:1fr}
   .stat-item:nth-child(3){grid-column:auto}
   .stat-item{border-bottom:1px solid rgba(0,201,167,0.08)!important}
   .stat-item:last-child{border-bottom:none!important}
-  .badge-top,.badge-bottom{display:none}
 }
 </style>
 </head>
@@ -800,6 +712,7 @@ footer{border-top:1px solid rgba(0,201,167,0.1);padding:48px 56px}
 <div class="mobile-menu" id="mobile-menu">
   <a href="#process" class="mobile-link">How It Works</a>
   <a href="#features" class="mobile-link">Features</a>
+  <a href="#audience" class="mobile-link">Who It's For</a>
   <a href="https://home.getrx.com/pricing-information/" class="mobile-link">Pricing</a>
   <a href="https://home.getrx.com/faq-2/" class="mobile-link">FAQ</a>
   <a href="https://home.getrx.com/us/" class="mobile-link">About</a>
@@ -815,15 +728,15 @@ footer{border-top:1px solid rgba(0,201,167,0.1);padding:48px 56px}
     <div class="ticker-item"><span class="ticker-dot"></span>Prescriptions Sent Today <span id="ticker-count">12,847</span></div>
     <div class="ticker-item"><span class="ticker-dot"></span>Average Rx Time <span>47 seconds</span></div>
     <div class="ticker-item"><span class="ticker-dot"></span>HIPAA Compliant <span>Always</span></div>
-    <div class="ticker-item"><span class="ticker-dot"></span>Available <span>iOS · Android · Web</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Available On <span>iPhone · iPad · Web</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Built For <span>Vets · Surgeons · Physicians</span></div>
     <div class="ticker-item"><span class="ticker-dot"></span>Beta Access <span>Now Open</span></div>
-    <div class="ticker-item"><span class="ticker-dot"></span>Patient Satisfaction <span>98.4%</span></div>
     <div class="ticker-item"><span class="ticker-dot"></span>Prescriptions Sent Today <span id="ticker-count2">12,847</span></div>
     <div class="ticker-item"><span class="ticker-dot"></span>Average Rx Time <span>47 seconds</span></div>
     <div class="ticker-item"><span class="ticker-dot"></span>HIPAA Compliant <span>Always</span></div>
-    <div class="ticker-item"><span class="ticker-dot"></span>Available <span>iOS · Android · Web</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Available On <span>iPhone · iPad · Web</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Built For <span>Vets · Surgeons · Physicians</span></div>
     <div class="ticker-item"><span class="ticker-dot"></span>Beta Access <span>Now Open</span></div>
-    <div class="ticker-item"><span class="ticker-dot"></span>Patient Satisfaction <span>98.4%</span></div>
   </div>
 </div>
 
@@ -835,13 +748,13 @@ footer{border-top:1px solid rgba(0,201,167,0.1);padding:48px 56px}
   <div class="hero-bg-orb orb-3"></div>
   <div class="hero-inner">
     <div class="hero-left">
-      <div class="hero-eyebrow"><span class="eyebrow-dot"></span>Full Release Coming Soon — Beta Access Open</div>
+      <div class="hero-eyebrow"><span class="eyebrow-dot"></span>Now on iPhone, iPad &amp; Web — Beta Access Open</div>
       <h1 class="hero-headline">
         <span class="line"><span class="line-inner">Write a Rx</span></span>
         <span class="line"><span class="line-inner grad-text">in under 60</span></span>
         <span class="line"><span class="line-inner">seconds.</span></span>
       </h1>
-      <p class="hero-sub">getRx transforms your mobile device into a fully compliant prescription pad. Designed for how modern prescribers actually work — fast, secure, and always with you.</p>
+      <p class="hero-sub">getRx gives prescribers — vets, surgeons, and traveling physicians — a fully compliant digital prescription pad. Fast, secure, and built for how you actually work.</p>
       <div class="hero-actions">
         <a href="https://home.getrx.com/prescriber/" class="btn-primary-hero">Start Prescribing Free</a>
         <a href="#process" class="btn-secondary-hero">See How It Works <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M3 8h10M8 3l5 5-5 5"/></svg></a>
@@ -849,7 +762,7 @@ footer{border-top:1px solid rgba(0,201,167,0.1);padding:48px 56px}
       <div class="hero-stats">
         <div class="stat-item"><div class="stat-number"><span class="accent">&lt;60</span>s</div><div class="stat-label">Per Prescription</div></div>
         <div class="stat-item"><div class="stat-number"><span class="accent">100</span>%</div><div class="stat-label">HIPAA Compliant</div></div>
-        <div class="stat-item"><div class="stat-number"><span class="accent">24</span>/7</div><div class="stat-label">Available Anywhere</div></div>
+        <div class="stat-item"><div class="stat-number" style="font-size:18px;line-height:1.3"><span class="accent" style="font-size:18px">iPhone · iPad<br>+ Web</span></div><div class="stat-label">Available On</div></div>
       </div>
     </div>
     <div class="hero-visual">
@@ -859,7 +772,7 @@ footer{border-top:1px solid rgba(0,201,167,0.1);padding:48px 56px}
         <div class="live-pill"><span class="live-dot"></span>Live Demo</div>
         <div class="phone-wrap">
           <div class="phone-shell">
-            <img src="https://home.getrx.com/wp-content/uploads/2015/06/main_iphone-483x1024.png" alt="getRx app" loading="eager">
+            <img src="https://home.getrx.com/wp-content/uploads/2015/06/main_iphone-483x1024.png" alt="getRx app on iPhone" loading="eager">
           </div>
         </div>
         <div class="ui-badge badge-top">
@@ -883,7 +796,7 @@ footer{border-top:1px solid rgba(0,201,167,0.1);padding:48px 56px}
     <div class="process-header reveal">
       <div class="section-eyebrow">How It Works</div>
       <h2 class="section-heading">Three steps.<br>Zero friction.</h2>
-      <p class="section-sub">getRx strips away everything that slows you down. No phone calls. No hold music. No fax machines. Just prescriptions, sent.</p>
+      <p class="section-sub">getRx strips away everything that slows prescribers down. No phone calls. No hold music. No fax machines. Just prescriptions, sent.</p>
     </div>
     <div class="process-flow">
       <div class="process-card reveal reveal-delay-1">
@@ -962,9 +875,9 @@ footer{border-top:1px solid rgba(0,201,167,0.1);padding:48px 56px}
       <div class="reveal">
         <div class="section-eyebrow">Features</div>
         <h2 class="section-heading">Built for how<br>you actually work.</h2>
-        <p class="section-sub">Every feature was designed to remove a specific pain point from the prescribing workflow — nothing extraneous.</p>
+        <p class="section-sub">Every feature was designed to remove a specific pain point from the prescribing workflow — for vets, surgeons, and physicians in the field.</p>
         <div class="features-grid">
-          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#00c9a7" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div class="feat-title">Any Device</div><div class="feat-desc">iOS, Android, and web. Your pad is always in your pocket.</div></div>
+          <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#00c9a7" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div class="feat-title">iPhone, iPad &amp; Web</div><div class="feat-desc">Native on iOS and available on the web. Your prescription pad is always with you.</div></div>
           <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#00c9a7" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div class="feat-title">Practice Queues</div><div class="feat-desc">Share records with role-based permissions across your team.</div></div>
           <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#00c9a7" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="feat-title">Store &amp; Print</div><div class="feat-desc">Every Rx stored, searchable, and printable from your phone.</div></div>
           <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#00c9a7" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="feat-title">HIPAA by Design</div><div class="feat-desc">E2E encryption, secure auth, and full audit logs. Always.</div></div>
@@ -980,38 +893,68 @@ footer{border-top:1px solid rgba(0,201,167,0.1);padding:48px 56px}
 
 <div class="section-divider"></div>
 
-<!-- AUDIENCE -->
+<!-- WHO IT'S FOR -->
 <section class="audience-section" id="audience" style="padding-top:110px">
   <div class="container">
     <div style="text-align:center;margin-bottom:56px" class="reveal">
-      <div class="section-eyebrow" style="justify-content:center;display:inline-flex">Who It's For</div>
-      <h2 class="section-heading">One platform.<br>Two experiences.</h2>
+      <div class="section-eyebrow" style="justify-content:center;display:inline-flex">Built For</div>
+      <h2 class="section-heading">Purpose-built for<br>prescribers in the field.</h2>
+      <p class="section-sub" style="margin:0 auto;text-align:center">getRx is built exclusively for prescribers right now — the people who need it most. A patient-facing app with AI concierge is coming.</p>
     </div>
-    <div class="audience-cards">
-      <a href="https://home.getrx.com/prescriber/" class="aud-card aud-card-prescriber reveal reveal-delay-1">
-        <div class="aud-tag tag-teal"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16m14 0h2m-2 0H5m-2 0H1"/></svg>For Prescribers</div>
-        <h3 class="aud-title">I'm a Prescriber</h3>
-        <p class="aud-desc">Doctors, NPs, PAs — anyone who writes prescriptions. Get a digital pad that respects your time and keeps up with you.</p>
-        <ul class="aud-perks">
-          <li><span class="check-wrap check-teal"><svg viewBox="0 0 12 12" fill="none" stroke="#00c9a7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"/></svg></span>Write and send Rx in under 60 seconds</li>
-          <li><span class="check-wrap check-teal"><svg viewBox="0 0 12 12" fill="none" stroke="#00c9a7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"/></svg></span>Full patient roster management</li>
-          <li><span class="check-wrap check-teal"><svg viewBox="0 0 12 12" fill="none" stroke="#00c9a7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"/></svg></span>Share access with your team</li>
-          <li><span class="check-wrap check-teal"><svg viewBox="0 0 12 12" fill="none" stroke="#00c9a7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"/></svg></span>Full compliance and audit trail</li>
-        </ul>
-        <span class="aud-btn aud-btn-teal">Prescriber Sign Up <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M8 3l5 5-5 5"/></svg></span>
-      </a>
-      <a href="https://home.getrx.com/patient/" class="aud-card aud-card-patient reveal reveal-delay-2">
-        <div class="aud-tag tag-cyan"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>For Patients</div>
-        <h3 class="aud-title">I'm a Patient</h3>
-        <p class="aud-desc">No more waiting on hold for refills. Get your prescriptions sent directly to your pharmacy — the moment your doctor writes them.</p>
-        <ul class="aud-perks">
-          <li><span class="check-wrap check-cyan"><svg viewBox="0 0 12 12" fill="none" stroke="#00d4ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"/></svg></span>Receive prescriptions in real time</li>
-          <li><span class="check-wrap check-cyan"><svg viewBox="0 0 12 12" fill="none" stroke="#00d4ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"/></svg></span>View and manage your full Rx history</li>
-          <li><span class="check-wrap check-cyan"><svg viewBox="0 0 12 12" fill="none" stroke="#00d4ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"/></svg></span>Choose your preferred pharmacy</li>
-          <li><span class="check-wrap check-cyan"><svg viewBox="0 0 12 12" fill="none" stroke="#00d4ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"/></svg></span>Zero calls, zero hold music</li>
-        </ul>
-        <span class="aud-btn aud-btn-cyan">Patient Info <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M8 3l5 5-5 5"/></svg></span>
-      </a>
+
+    <!-- Prescriber type cards -->
+    <div class="prescriber-grid" style="margin-bottom:24px">
+      <div class="feat-card reveal reveal-delay-1" style="text-align:center;padding:36px 24px">
+        <div class="feat-icon" style="margin:0 auto 18px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#00c9a7" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="feat-title">Veterinarians</div>
+        <div class="feat-desc">Write and send animal prescriptions from the clinic, farm, or field — instantly and compliantly.</div>
+      </div>
+      <div class="feat-card reveal reveal-delay-2" style="text-align:center;padding:36px 24px">
+        <div class="feat-icon" style="margin:0 auto 18px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#00c9a7" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <div class="feat-title">Plastic Surgeons</div>
+        <div class="feat-desc">Manage pre- and post-op medications at speed, without disrupting your procedure schedule.</div>
+      </div>
+      <div class="feat-card reveal reveal-delay-3" style="text-align:center;padding:36px 24px">
+        <div class="feat-icon" style="margin:0 auto 18px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#00c9a7" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="feat-title">Traveling Physicians</div>
+        <div class="feat-desc">Prescribe on the go from any location. Your full patient roster travels with you in your pocket.</div>
+      </div>
+    </div>
+
+    <!-- AI Concierge coming soon teaser -->
+    <div class="reveal">
+      <div style="background:linear-gradient(135deg,rgba(0,201,167,0.07) 0%,rgba(167,143,255,0.07) 100%);border:1px solid rgba(167,143,255,0.2);border-radius:20px;padding:40px 48px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;">
+        <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(167,143,255,0.4),rgba(0,201,167,0.4),transparent)"></div>
+        <div style="position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(167,143,255,0.1),transparent 65%);border-radius:50%;pointer-events:none"></div>
+        <div style="flex:1;min-width:260px">
+          <div style="display:inline-flex;align-items:center;gap:7px;background:rgba(167,143,255,0.12);border:1px solid rgba(167,143,255,0.25);border-radius:100px;padding:5px 14px;font-size:11px;font-weight:600;color:#c4b5fd;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">
+            <span style="width:6px;height:6px;background:#a78fff;border-radius:50%;box-shadow:0 0 8px #a78fff;animation:pulse-dot 2s ease-in-out infinite"></span>
+            Coming Soon
+          </div>
+          <h3 style="font-family:'Syne',sans-serif;font-size:clamp(20px,3vw,26px);font-weight:800;letter-spacing:-0.03em;color:var(--white);margin-bottom:10px">Patient App with AI Concierge</h3>
+          <p style="font-size:15px;color:var(--muted2);line-height:1.7;font-weight:300;max-width:480px">We're building a patient-side experience powered by AI — so patients can receive prescriptions, ask questions, and manage their care seamlessly. Prescribers get notified the moment it launches.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;flex-shrink:0">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:32px;height:32px;background:rgba(167,143,255,0.12);border:1px solid rgba(167,143,255,0.2);border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a78fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+            <span style="font-size:13px;color:var(--muted2);font-weight:300">AI-powered Rx Q&amp;A for patients</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:32px;height:32px;background:rgba(167,143,255,0.12);border:1px solid rgba(167,143,255,0.2);border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a78fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.3a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.48h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.1a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.48 17.5"/></svg></div>
+            <span style="font-size:13px;color:var(--muted2);font-weight:300">Direct prescriber–patient messaging</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:32px;height:32px;background:rgba(167,143,255,0.12);border:1px solid rgba(167,143,255,0.2);border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a78fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+            <span style="font-size:13px;color:var(--muted2);font-weight:300">Rx history &amp; pharmacy management</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1028,7 +971,7 @@ footer{border-top:1px solid rgba(0,201,167,0.1);padding:48px 56px}
       <div class="trust-sep"></div>
       <div class="trust-item"><div class="trust-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#00c9a7" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><div class="trust-name">Real-Time Delivery</div><div class="trust-note">Prescriptions sent in seconds</div></div></div>
       <div class="trust-sep"></div>
-      <div class="trust-item"><div class="trust-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#00c9a7" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div><div class="trust-name">Multi-Device</div><div class="trust-note">iOS, Android, and web</div></div></div>
+      <div class="trust-item"><div class="trust-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#00c9a7" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div><div class="trust-name">iPhone, iPad &amp; Web</div><div class="trust-note">Native iOS + web access</div></div></div>
     </div>
   </div>
 </section>
@@ -1039,8 +982,8 @@ footer{border-top:1px solid rgba(0,201,167,0.1);padding:48px 56px}
     <div class="cta-wrap reveal">
       <div class="cta-glow"></div><div class="cta-glow-2"></div>
       <div class="hero-eyebrow" style="justify-content:center;margin:0 auto 28px;display:inline-flex"><span class="eyebrow-dot"></span>Full release coming soon — get in early</div>
-      <h2 class="cta-heading">Ready to modernize<br>your practice?</h2>
-      <p class="cta-sub">Join prescribers already saving hours every week with getRx.</p>
+      <h2 class="cta-heading">Ready to prescribe<br>smarter?</h2>
+      <p class="cta-sub">Join vets, surgeons, and physicians already saving time every day with getRx.</p>
       <div class="cta-actions">
         <a href="https://home.getrx.com/prescriber/" class="btn-primary-hero">Get Early Access</a>
         <a href="https://home.getrx.com/contact-us/" class="btn-secondary-hero">Contact Us <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M3 8h10M8 3l5 5-5 5"/></svg></a>
@@ -1081,29 +1024,27 @@ mMenu.querySelectorAll('a').forEach(a=>{
   });
 });
 
-/* ── CURSOR (desktop only) ── */
-const isTouch=window.matchMedia('(hover:none),(pointer:coarse)').matches;
+/* ── CURSOR — genuine mouse/trackpad only, never iPhone/iPad/touch ── */
+const isTouch=(()=>{
+  if(navigator.maxTouchPoints>0)return true;
+  if(window.matchMedia('(pointer:coarse)').matches)return true;
+  if(window.matchMedia('(hover:none)').matches)return true;
+  return false;
+})();
 if(!isTouch){
+  document.body.classList.add('has-pointer');
   const cur=document.getElementById('cursor');
   const ring=document.getElementById('cursor-ring');
-  cur.style.display='block';ring.style.display='block';
   let mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove',e=>{
-    mx=e.clientX;my=e.clientY;
-    cur.style.left=mx+'px';cur.style.top=my+'px';
-  });
-  (function animRing(){
-    rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;
-    ring.style.left=rx+'px';ring.style.top=ry+'px';
-    requestAnimationFrame(animRing);
-  })();
-  document.querySelectorAll('a,button,.feat-card,.process-card,.aud-card').forEach(el=>{
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+  (function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)})();
+  document.querySelectorAll('a,button,.feat-card,.process-card').forEach(el=>{
     el.addEventListener('mouseenter',()=>{cur.style.width='18px';cur.style.height='18px';ring.style.width='52px';ring.style.height='52px';ring.style.borderColor='rgba(0,201,167,0.7)'});
     el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';ring.style.width='36px';ring.style.height='36px';ring.style.borderColor='rgba(0,201,167,0.5)'});
   });
 }
 
-/* ── CANVAS ── */
+/* ── CANVAS PARTICLES ── */
 const canvas=document.getElementById('hero-canvas');
 const ctx=canvas.getContext('2d');
 let W,H;
@@ -1124,13 +1065,11 @@ class StreamLine{
   draw(){const g=ctx.createLinearGradient(this.x,this.y-this.len,this.x,this.y);g.addColorStop(0,`rgba(${this.color},0)`);g.addColorStop(1,`rgba(${this.color},${this.alpha})`);ctx.beginPath();ctx.moveTo(this.x,this.y-this.len);ctx.lineTo(this.x,this.y);ctx.strokeStyle=g;ctx.lineWidth=1;ctx.stroke()}
 }
 
-/* Reduce particles on mobile for perf */
 const particleCount=window.innerWidth<768?60:120;
 const lineCount=window.innerWidth<768?20:40;
 const particles=[],lines=[];
 for(let i=0;i<particleCount;i++)particles.push(new Particle());
 for(let i=0;i<lineCount;i++)lines.push(new StreamLine());
-
 function animCanvas(){ctx.clearRect(0,0,W,H);lines.forEach(l=>{l.update();l.draw()});particles.forEach(p=>{p.update();p.draw()});requestAnimationFrame(animCanvas)}
 animCanvas();
 
@@ -1144,7 +1083,7 @@ const revObs=new IntersectionObserver(entries=>{
 },{threshold:0.07,rootMargin:'0px 0px -20px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
 
-/* ── TICKER ── */
+/* ── TICKER LIVE COUNT ── */
 let tickerBase=12847;
 setInterval(()=>{
   tickerBase+=Math.floor(Math.random()*3);
@@ -1153,14 +1092,12 @@ setInterval(()=>{
 
 /* ── RX DEMO ── */
 const rxData={patient:'Sarah M. — DOB 04/12/1985',med:'Amoxicillin 500mg',dose:'Take 1 capsule 3x daily, 10 days',pharmacy:'CVS Pharmacy — 0.3mi'};
-
 function typeText(el,text,speed=28){
   return new Promise(res=>{
     el.textContent='';el.classList.add('typing');let i=0;
     const t=setInterval(()=>{el.textContent+=text[i++];if(i>=text.length){clearInterval(t);el.classList.remove('typing');res()}},speed);
   });
 }
-
 async function runRxDemo(){
   const prog=document.getElementById('rx-progress');
   const btn=document.getElementById('rx-send-btn');
@@ -1181,7 +1118,6 @@ async function runRxDemo(){
   await new Promise(r=>setTimeout(r,900));
   overlay.classList.add('visible');
 }
-
 const demoObs=new IntersectionObserver(entries=>{
   if(entries[0].isIntersecting){runRxDemo();demoObs.disconnect()}
 },{threshold:0.2});
