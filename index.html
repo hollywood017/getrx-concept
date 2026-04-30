@@ -206,6 +206,7 @@ body.has-pointer #cursor-ring{display:block}
 @keyframes float{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-14px) rotate(1deg)}}
 .phone-shell{background:linear-gradient(160deg,rgba(12,30,55,.96),rgba(5,14,26,.98));border-radius:48px;border:1.5px solid rgba(59,184,175,.22);padding:13px;box-shadow:0 0 0 1px rgba(255,255,255,.04),0 60px 120px rgba(0,0,0,.8),0 0 80px rgba(59,184,175,.1),inset 0 1px 0 rgba(255,255,255,.06)}
 .phone-screen{background:#F2F2F7;border-radius:36px;overflow:hidden;display:flex;flex-direction:column}
+.phone-img{display:block;width:100%;height:auto;aspect-ratio:1144/2042;object-fit:cover;object-position:center top;border-radius:36px;background:#000}
 /* pharmacy list screen */
 .pscreen-header{background:var(--teal-deep);padding:14px 16px 12px;display:flex;align-items:center;gap:8px}
 .pscreen-back{color:#fff;opacity:.85;display:flex;align-items:center;flex-shrink:0}
@@ -343,7 +344,7 @@ section{position:relative;z-index:1}
 .rx-reset:hover{background:rgba(59,184,175,.07);border-color:rgba(59,184,175,.45)}
 
 /* PAGE-FLIP CAROUSEL — lookbook-style 3D flip through real app screens (21st.dev inspired) */
-.flip-stage{position:relative;perspective:2000px;perspective-origin:50% 50%;width:100%;max-width:340px;margin:0 auto;aspect-ratio:1144/2192;user-select:none}
+.flip-stage{position:relative;perspective:2000px;perspective-origin:50% 50%;width:100%;max-width:340px;margin:0 auto;aspect-ratio:1144/2042;user-select:none}
 .flip-book{position:relative;width:100%;height:100%;transform-style:preserve-3d}
 .flip-page{position:absolute;inset:0;border-radius:34px;overflow:hidden;background:linear-gradient(160deg,rgba(12,30,55,.96),rgba(5,14,26,.98));border:1.5px solid rgba(59,184,175,.22);box-shadow:0 0 0 1px rgba(255,255,255,.04),0 40px 100px rgba(0,0,0,.7),0 0 60px rgba(59,184,175,.08);transform-origin:left center;transition:transform 1.4s cubic-bezier(.6,.04,.3,1),box-shadow 1.4s ease;backface-visibility:hidden;-webkit-backface-visibility:hidden;will-change:transform}
 .flip-page[data-i="0"]{z-index:4}
@@ -550,6 +551,18 @@ footer{border-top:1px solid rgba(59,184,175,.08);padding:64px 0 32px}
 .signup-head p{color:var(--muted2);font-size:14.5px;margin:0}
 @media(max-width:768px){.contact-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}}
 
+/* POLICY (legal long-form) */
+.policy-section{padding:90px 0}
+.policy-card{max-width:820px;margin:0 auto;background:rgba(255,255,255,.03);border:1px solid rgba(59,184,175,.18);border-radius:18px;padding:40px 44px}
+.policy-card .section-eye{margin-bottom:14px}
+.policy-card h2{font-family:var(--head);font-size:30px;font-weight:800;color:var(--white);letter-spacing:-.02em;margin:0 0 8px}
+.policy-card h3{font-family:var(--head);font-size:17px;font-weight:700;color:var(--white);letter-spacing:-.01em;margin:24px 0 8px}
+.policy-meta{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:24px}
+.policy-card p{color:var(--muted2);font-size:14.5px;line-height:1.75;margin:0 0 14px}
+.policy-card p:last-child{margin-bottom:0}
+.policy-card strong{color:var(--white);font-weight:700}
+@media(max-width:768px){.policy-card{padding:28px 22px}.policy-card h2{font-size:24px}}
+
 /* PRESS */
 .press-section{padding:80px 0;text-align:center}
 .press-card{max-width:580px;margin:0 auto;padding:48px 32px;background:rgba(255,255,255,.03);border:1px dashed rgba(59,184,175,.25);border-radius:18px}
@@ -743,44 +756,7 @@ footer{border-top:1px solid rgba(59,184,175,.08);padding:64px 0 32px}
         <div class="phone-halo-2"></div>
         <div class="phone-wrap">
           <div class="phone-shell">
-            <div class="phone-screen">
-              <div class="pscreen-header">
-                <div class="pscreen-back"><i data-lucide="chevron-left" style="width:13px;height:13px"></i></div>
-                <span class="pscreen-header-title">Find a Pharmacy</span>
-                <div class="pscreen-header-dots"><span></span><span></span><span></span></div>
-              </div>
-              <div class="pscreen-search">
-                <i data-lucide="search" style="width:10px;height:10px;color:#A0AEC0"></i>
-                <span class="pscreen-search-txt">Search by name or zip...</span>
-              </div>
-              <div class="pscreen-result-count">3 PHARMACIES NEARBY</div>
-              <div class="pscreen-pharm-list">
-                <div class="pscreen-pharm-card">
-                  <div class="pscreen-pharm-info">
-                    <div class="pscreen-pharm-name">CVS Pharmacy #4821</div>
-                    <div class="pscreen-pharm-addr">123 Main St · 0.3 mi</div>
-                    <div class="pscreen-pharm-hours">Open until 9:00 PM</div>
-                  </div>
-                  <button class="pscreen-fav-btn">+ Favorite</button>
-                </div>
-                <div class="pscreen-pharm-card">
-                  <div class="pscreen-pharm-info">
-                    <div class="pscreen-pharm-name">Walgreens #2244</div>
-                    <div class="pscreen-pharm-addr">456 Oak Ave · 0.7 mi</div>
-                    <div class="pscreen-pharm-hours">Open 24 Hours</div>
-                  </div>
-                  <button class="pscreen-fav-btn">+ Favorite</button>
-                </div>
-                <div class="pscreen-pharm-card">
-                  <div class="pscreen-pharm-info">
-                    <div class="pscreen-pharm-name">Rite Aid #0931</div>
-                    <div class="pscreen-pharm-addr">789 Elm Blvd · 1.1 mi</div>
-                    <div class="pscreen-pharm-hours">Open until 6:00 PM</div>
-                  </div>
-                  <button class="pscreen-fav-btn">+ Favorite</button>
-                </div>
-              </div>
-            </div>
+            <img class="phone-img" src="assets/screens/pharmacy-select.png" alt="getRx — pick a pharmacy from the map for an EPCS prescription" loading="eager">
           </div>
           <div class="ui-badge badge-top">
             <div class="badge-icon"><i data-lucide="check-circle" style="width:15px;height:15px"></i></div>
@@ -987,7 +963,7 @@ footer{border-top:1px solid rgba(59,184,175,.08);padding:64px 0 32px}
   <div class="container">
     <div class="video-header reveal">
       <div class="section-eye">Walkthrough</div>
-      <h2 class="section-head">Watch a real prescriber <span class="grad-text">set up and send.</span></h2>
+      <h2 class="section-head">A quick tour of <span class="grad-text">getRx.</span></h2>
       <p class="section-sub">A short walkthrough of onboarding, writing a controlled prescription, and sending it.</p>
     </div>
     <div class="video-frame reveal reveal-d1">
@@ -1286,6 +1262,29 @@ footer{border-top:1px solid rgba(59,184,175,.08);padding:64px 0 32px}
 
 <div class="section-divider"></div>
 
+<!-- ID VERIFICATION POLICY -->
+<section class="policy-section" id="identity-verification" style="scroll-margin-top:96px">
+  <div class="container">
+    <div class="policy-card reveal">
+      <div class="section-eye">Compliance</div>
+      <h2>Identity Verification for Prescribers</h2>
+      <div class="policy-meta">Policy · Last updated April 2026</div>
+      <p>getRx (the <strong>"Company"</strong>) is committed to protecting the integrity and security of electronically transmitted, digital pharmaceutical prescriptions, including the continuous vetting of the identity of Prescribers who use the Company's software applications.</p>
+      <p>The Company's proprietary software is integrated through two separate user platforms. One platform, <strong>getRx for Patients</strong>, is for use by patients to communicate with their Prescriber and, at the patient's option, to direct prescriptions that have been entered into the software by their Prescriber to a pharmacy of the patient's choosing. The other platform, <strong>getRx for Prescribers</strong>, is for use by licensed medical professionals with DEA prescribing authority. These platforms work seamlessly together, electronically transmitting encrypted information between the platforms, servers, and pharmacies.</p>
+      <h3>Prescriber identity verification</h3>
+      <p>For any Prescriber to access getRx for Prescribers, the Prescriber must create a profile including name, address, phone number, and DEA registration number. The Prescriber must also complete a third-party identity verification process integrated into the getRx for Prescribers software application. The third-party provider is <strong>Exostar Identity Verification</strong>. Exostar compares user information to regulated data sources, authenticates government-issued identification, and uses liveness detection to match the face of a living human viewed through a user device camera to make sure that the user is actually the person the user claims to be. Exostar also asks the user to answer questions regarding personal history and verifies those answers.</p>
+      <h3>DEA registration cross-reference</h3>
+      <p>Once a Prescriber is verified through Exostar, the getRx for Prescribers application then uses another third-party service provider called <strong>DEA Lookup</strong> to cross-reference the user's information, which has been verified by Exostar, and the user's DEA registration number with an active and valid DEA license bearing the user's Exostar-verified name and identifying information. Once DEA Lookup confirms that the user's information corresponds to an active and valid DEA registration number, the getRx for Prescribers application creates a user profile and issues it a digital certificate provided by third-party provider <strong>DigiCert</strong>. After receiving a Digital Certificate, the Prescriber's credentials remain authenticated for two years, at which point the Prescriber's credentials must be authenticated again.</p>
+      <h3>Multi-factor authentication</h3>
+      <p>Each user log-in to the getRx for Prescribers is confirmed through multi-factor authentication.</p>
+      <h3>Periodic audits</h3>
+      <p>Random periodic audits are performed manually to detect any prescriber activity that appears to be fraudulent. If potentially fraudulent activity is detected, the Company will make efforts to verify the Prescriber's identity. If the Prescriber's identity cannot be manually verified within a reasonable period of time, then the Prescriber's access to getRx for Prescribers is immediately terminated.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
 <!-- PRESS -->
 <section class="press-section" id="press" style="scroll-margin-top:96px">
   <div class="container">
@@ -1360,8 +1359,9 @@ footer{border-top:1px solid rgba(59,184,175,.08);padding:64px 0 32px}
       <div class="footer-h">Account</div>
       <a href="https://www.getrx.com/prescribers/new">Sign In</a>
       <a href="#signup">Sign Up</a>
-      <a href="#privacy">Privacy</a>
-      <a href="#terms">Terms</a>
+      <a href="#identity-verification">ID Verification</a>
+      <a href="#privacy" aria-disabled="true">Privacy <span style="opacity:.5">(soon)</span></a>
+      <a href="#terms" aria-disabled="true">Terms <span style="opacity:.5">(soon)</span></a>
     </div>
   </div>
   <div class="footer-bottom">
