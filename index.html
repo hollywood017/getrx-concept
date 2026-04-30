@@ -206,7 +206,7 @@ body.has-pointer #cursor-ring{display:block}
 @keyframes float{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-14px) rotate(1deg)}}
 .phone-shell{background:linear-gradient(160deg,rgba(12,30,55,.96),rgba(5,14,26,.98));border-radius:48px;border:1.5px solid rgba(59,184,175,.22);padding:13px;box-shadow:0 0 0 1px rgba(255,255,255,.04),0 60px 120px rgba(0,0,0,.8),0 0 80px rgba(59,184,175,.1),inset 0 1px 0 rgba(255,255,255,.06)}
 .phone-screen{background:#F2F2F7;border-radius:36px;overflow:hidden;display:flex;flex-direction:column}
-.phone-img{display:block;width:100%;height:auto;aspect-ratio:1144/1957;object-fit:cover;object-position:center top;border-radius:36px;background:#000}
+.phone-img{display:block;width:100%;height:auto;aspect-ratio:1125/2436;object-fit:contain;object-position:center center;border-radius:36px;background:#070B14}
 /* pharmacy list screen */
 .pscreen-header{background:var(--teal-deep);padding:14px 16px 12px;display:flex;align-items:center;gap:8px}
 .pscreen-back{color:#fff;opacity:.85;display:flex;align-items:center;flex-shrink:0}
@@ -344,14 +344,14 @@ section{position:relative;z-index:1}
 .rx-reset:hover{background:rgba(59,184,175,.07);border-color:rgba(59,184,175,.45)}
 
 /* PAGE-FLIP CAROUSEL — lookbook-style 3D flip through real app screens (21st.dev inspired) */
-.flip-stage{position:relative;perspective:2000px;perspective-origin:50% 50%;width:100%;max-width:340px;margin:0 auto;aspect-ratio:1144/1957;user-select:none}
+.flip-stage{position:relative;perspective:2000px;perspective-origin:50% 50%;width:100%;max-width:340px;margin:0 auto;aspect-ratio:1125/2436;user-select:none}
 .flip-book{position:relative;width:100%;height:100%;transform-style:preserve-3d}
 .flip-page{position:absolute;inset:0;border-radius:34px;overflow:hidden;background:linear-gradient(160deg,rgba(12,30,55,.96),rgba(5,14,26,.98));border:1.5px solid rgba(59,184,175,.22);box-shadow:0 0 0 1px rgba(255,255,255,.04),0 40px 100px rgba(0,0,0,.7),0 0 60px rgba(59,184,175,.08);transform-origin:left center;transition:transform 1.4s cubic-bezier(.6,.04,.3,1),box-shadow 1.4s ease;backface-visibility:hidden;-webkit-backface-visibility:hidden;will-change:transform}
 .flip-page[data-i="0"]{z-index:4}
 .flip-page[data-i="1"]{z-index:3}
 .flip-page[data-i="2"]{z-index:2}
 .flip-page[data-i="3"]{z-index:1}
-.flip-page img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;border-radius:34px;background:#000}
+.flip-page img{width:100%;height:100%;object-fit:contain;object-position:center center;display:block;border-radius:34px;background:#070B14}
 .flip-page::after{content:"";position:absolute;inset:0;border-radius:34px;background:linear-gradient(90deg,rgba(0,0,0,.18) 0%,transparent 6%,transparent 94%,rgba(255,255,255,.06) 100%);pointer-events:none}
 .flip-page.flipped{transform:rotateY(-178deg);box-shadow:0 40px 90px rgba(0,0,0,.5),0 0 40px rgba(59,184,175,.05)}
 .flip-controls{position:absolute;left:50%;bottom:-58px;transform:translateX(-50%);display:flex;align-items:center;gap:18px;z-index:5}
