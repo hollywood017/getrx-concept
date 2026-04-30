@@ -2,17 +2,32 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="getRx gives vets, surgeons, and traveling physicians a fully compliant digital prescription pad — including controlled substances. Write and send any Rx in under 60 seconds.">
-<title>getRx — Write any prescription in under 60 seconds.</title>
+<meta name="description" content="getRx is the fully compliant digital prescription pad for prescribers — including controlled substances. Write and send any Rx in under 60 seconds. Built for vets, plastic surgeons, traveling physicians, and every other prescriber.">
+<title>getRx — Prescriptions, reimagined.</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<meta property="og:title" content="getRx — Prescriptions, reimagined.">
+<meta property="og:description" content="Write any prescription, controlled or standard, in under 60 seconds. DEA 21 CFR Part 1311 compliant.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="getRx — Prescriptions, reimagined.">
+<meta name="twitter:description" content="Write any prescription, controlled or standard, in under 60 seconds.">
+<meta name="twitter:image" content="assets/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
+<!-- PAID MEDIA: tracking pixel slot — drop GA4, Meta, TikTok, LinkedIn pixel snippets here -->
+<!-- /PAID MEDIA -->
 <style>
 :root{
   --bg:#070B14;--bg2:#0A1020;--bg3:#0D1628;
-  --teal:#3BB8AF;--teal2:#4ECFC6;--cyan:#2DAAA2;
+  --teal:#3BB8AF;--teal2:#4ECFC6;--cyan:#2DAAA2;--teal-deep:#1F5F5A;
   --gold:#F0A500;--gold2:#FFC94D;
   --violet:#8B5CF6;--violet2:#A78FFF;
   --white:#F0F6FF;--text:#94A3B8;--muted:#4D6A80;--muted2:#7BA8C0;
@@ -192,7 +207,7 @@ body.has-pointer #cursor-ring{display:block}
 .phone-shell{background:linear-gradient(160deg,rgba(12,30,55,.96),rgba(5,14,26,.98));border-radius:48px;border:1.5px solid rgba(59,184,175,.22);padding:13px;box-shadow:0 0 0 1px rgba(255,255,255,.04),0 60px 120px rgba(0,0,0,.8),0 0 80px rgba(59,184,175,.1),inset 0 1px 0 rgba(255,255,255,.06)}
 .phone-screen{background:#F2F2F7;border-radius:36px;overflow:hidden;display:flex;flex-direction:column}
 /* pharmacy list screen */
-.pscreen-header{background:var(--teal);padding:14px 16px 12px;display:flex;align-items:center;gap:8px}
+.pscreen-header{background:var(--teal-deep);padding:14px 16px 12px;display:flex;align-items:center;gap:8px}
 .pscreen-back{color:#fff;opacity:.85;display:flex;align-items:center;flex-shrink:0}
 .pscreen-header-title{flex:1;text-align:center;font-family:var(--head);font-size:11px;font-weight:700;color:#fff;letter-spacing:.01em}
 .pscreen-header-dots{display:flex;gap:3px;flex-shrink:0}
@@ -205,7 +220,7 @@ body.has-pointer #cursor-ring{display:block}
 .pscreen-pharm-name{font-size:9.5px;font-weight:700;color:#F0A500;font-family:var(--head);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pscreen-pharm-addr{font-size:8px;color:#4A5568;margin-top:2px;font-family:var(--body)}
 .pscreen-pharm-hours{font-size:7.5px;color:#68D391;margin-top:1px;font-family:var(--body);font-weight:500}
-.pscreen-fav-btn{background:var(--teal);color:#fff;border:none;border-radius:7px;padding:5px 8px;font-size:7.5px;font-weight:700;font-family:var(--body);cursor:pointer;white-space:nowrap;flex-shrink:0;letter-spacing:.01em}
+.pscreen-fav-btn{background:var(--teal-deep);color:#fff;border:none;border-radius:7px;padding:5px 8px;font-size:7.5px;font-weight:700;font-family:var(--body);cursor:pointer;white-space:nowrap;flex-shrink:0;letter-spacing:.01em}
 .pscreen-result-count{font-size:8px;color:#718096;font-family:var(--mono);padding:0 14px 2px;letter-spacing:.06em}
 
 /* FLOATING BADGES */
@@ -278,12 +293,19 @@ section{position:relative;z-index:1}
 .cs-dea-text{font-family:var(--mono);font-size:9.5px;color:var(--teal);letter-spacing:.08em;text-transform:uppercase}
 
 /* RX DEMO */
-.demo-section{padding:110px 0}
-.demo-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
-.demo-left .section-sub{margin-bottom:32px}
-.demo-checks{display:flex;flex-direction:column;gap:14px;margin-bottom:36px}
-.demo-check{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--muted2)}
-.demo-check-icon{width:24px;height:24px;background:rgba(59,184,175,.1);border:1px solid rgba(59,184,175,.22);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--teal)}
+.demo-section{position:relative}
+.demo-scroll{position:relative;height:calc(100vh + 360vh)}
+.demo-pin{position:sticky;top:0;height:100vh;display:flex;align-items:center;padding:0 40px;overflow:hidden}
+.demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;width:100%;max-width:1200px;margin:0 auto}
+.demo-copy .section-sub{margin-bottom:24px}
+.demo-step-list{display:flex;flex-direction:column;gap:12px;margin-top:8px}
+.demo-step{display:flex;align-items:flex-start;gap:14px;padding:14px 16px;border-radius:12px;border:1px solid rgba(59,184,175,.1);background:rgba(59,184,175,.03);transition:all .35s ease;opacity:.55}
+.demo-step.active{opacity:1;border-color:rgba(59,184,175,.4);background:rgba(59,184,175,.09);transform:translateX(4px);box-shadow:0 0 30px rgba(59,184,175,.08)}
+.demo-step-num{font-family:var(--mono);font-size:11px;color:var(--teal);letter-spacing:.12em;background:rgba(59,184,175,.1);border:1px solid rgba(59,184,175,.25);border-radius:6px;padding:5px 9px;flex-shrink:0;margin-top:1px}
+.demo-step-title{font-family:var(--head);font-size:15px;font-weight:700;color:var(--white);letter-spacing:-.01em}
+.demo-step-desc{font-size:13px;color:var(--muted2);margin-top:2px;line-height:1.55}
+.demo-stage-wrap{display:flex;justify-content:center}
+@media(max-width:1024px){.demo-pin{padding:0 24px}.demo-grid{grid-template-columns:1fr;gap:32px}.demo-copy{order:2}.demo-stage-wrap{order:1}}
 .demo-card{background:rgba(5,14,28,.9);border:1px solid rgba(59,184,175,.16);border-radius:22px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.5);position:relative}
 .demo-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(59,184,175,.35),transparent)}
 .demo-hdr{background:rgba(59,184,175,.05);border-bottom:1px solid rgba(59,184,175,.1);padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
@@ -319,6 +341,29 @@ section{position:relative;z-index:1}
 .rx-success-sub{font-family:var(--mono);font-size:10px;color:var(--muted);text-align:center;line-height:1.9;letter-spacing:.06em;text-transform:uppercase}
 .rx-reset{background:transparent;border:1px solid rgba(59,184,175,.24);color:var(--teal);padding:9px 20px;border-radius:8px;font-size:12px;cursor:pointer;transition:all .2s;font-family:var(--mono);letter-spacing:.06em}
 .rx-reset:hover{background:rgba(59,184,175,.07);border-color:rgba(59,184,175,.45)}
+
+/* PAGE-FLIP CAROUSEL — lookbook-style 3D flip through real app screens (21st.dev inspired) */
+.flip-stage{position:relative;perspective:2000px;perspective-origin:50% 50%;width:100%;max-width:340px;margin:0 auto;aspect-ratio:1144/2192;user-select:none}
+.flip-book{position:relative;width:100%;height:100%;transform-style:preserve-3d}
+.flip-page{position:absolute;inset:0;border-radius:34px;overflow:hidden;background:linear-gradient(160deg,rgba(12,30,55,.96),rgba(5,14,26,.98));border:1.5px solid rgba(59,184,175,.22);box-shadow:0 0 0 1px rgba(255,255,255,.04),0 40px 100px rgba(0,0,0,.7),0 0 60px rgba(59,184,175,.08);transform-origin:left center;transition:transform 1.4s cubic-bezier(.6,.04,.3,1),box-shadow 1.4s ease;backface-visibility:hidden;-webkit-backface-visibility:hidden;will-change:transform}
+.flip-page[data-i="0"]{z-index:4}
+.flip-page[data-i="1"]{z-index:3}
+.flip-page[data-i="2"]{z-index:2}
+.flip-page[data-i="3"]{z-index:1}
+.flip-page img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;border-radius:34px;background:#000}
+.flip-page::after{content:"";position:absolute;inset:0;border-radius:34px;background:linear-gradient(90deg,rgba(0,0,0,.18) 0%,transparent 6%,transparent 94%,rgba(255,255,255,.06) 100%);pointer-events:none}
+.flip-page.flipped{transform:rotateY(-178deg);box-shadow:0 40px 90px rgba(0,0,0,.5),0 0 40px rgba(59,184,175,.05)}
+.flip-controls{position:absolute;left:50%;bottom:-58px;transform:translateX(-50%);display:flex;align-items:center;gap:18px;z-index:5}
+.flip-prev,.flip-next{width:38px;height:38px;border-radius:50%;background:rgba(59,184,175,.08);border:1px solid rgba(59,184,175,.25);color:var(--teal);font-size:20px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:var(--head);font-weight:700;transition:all .25s;backdrop-filter:blur(6px)}
+.flip-prev:hover,.flip-next:hover{background:rgba(59,184,175,.18);border-color:rgba(59,184,175,.5);transform:translateY(-1px);box-shadow:0 0 20px rgba(59,184,175,.25)}
+.flip-dots{display:flex;align-items:center;gap:7px}
+.flip-dots span{width:7px;height:7px;border-radius:50%;background:rgba(59,184,175,.22);cursor:pointer;transition:all .3s}
+.flip-dots span.active{width:22px;border-radius:4px;background:var(--teal);box-shadow:0 0 10px rgba(59,184,175,.5)}
+.flip-caption{position:absolute;left:0;right:0;bottom:-110px;text-align:center;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted2)}
+.flip-caption strong{color:var(--teal);font-weight:500}
+.flip-glow{position:absolute;inset:-60px;background:radial-gradient(ellipse,rgba(59,184,175,.1) 0%,transparent 65%);border-radius:50%;pointer-events:none;animation:halo-pulse 5s ease-in-out infinite;z-index:-1}
+@media(max-width:1024px){.flip-stage{max-width:280px}.flip-caption{bottom:-96px}}
+@media(max-width:480px){.flip-stage{max-width:240px}.flip-controls{bottom:-50px}.flip-prev,.flip-next{width:34px;height:34px;font-size:18px}}
 
 /* FEATURES */
 .feat-section{padding:110px 0}
@@ -409,13 +454,122 @@ section{position:relative;z-index:1}
 .cta-actions{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
 
 /* FOOTER */
-footer{border-top:1px solid rgba(59,184,175,.08);padding:48px 0}
-.footer-inner{max-width:1200px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
-.footer-logo{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+footer{border-top:1px solid rgba(59,184,175,.08);padding:64px 0 32px}
+.footer-grid{max-width:1200px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px}
+.footer-col{display:flex;flex-direction:column;gap:10px}
+.footer-col a{font-size:13.5px;color:var(--muted2);transition:color .2s}
+.footer-col a:hover{color:var(--teal)}
+.footer-h{font-family:var(--mono);font-size:10px;color:var(--teal);letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px}
+.footer-logo{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.footer-addr{font-size:13px;color:var(--muted2);line-height:1.6;margin:0}
+.footer-addr a{color:var(--muted2)}.footer-addr a:hover{color:var(--teal)}
+.footer-socials{display:flex;gap:10px;margin-top:8px}
+.footer-socials a{width:36px;height:36px;border-radius:8px;background:rgba(59,184,175,.06);border:1px solid rgba(59,184,175,.16);color:var(--muted2);display:flex;align-items:center;justify-content:center;transition:all .2s}
+.footer-socials a:hover{background:rgba(59,184,175,.14);border-color:rgba(59,184,175,.4);color:var(--teal);transform:translateY(-1px)}
+.footer-bottom{max-width:1200px;margin:48px auto 0;padding:24px 40px 0;border-top:1px solid rgba(59,184,175,.08);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
 .footer-copy{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.06em}
-.footer-links{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
-.footer-links a{font-size:13.5px;color:var(--muted2);transition:color .2s}
-.footer-links a:hover{color:var(--teal)}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;gap:32px}.footer-brand{grid-column:span 2}.footer-bottom{flex-direction:column;align-items:flex-start}}
+
+/* VIDEO MODULE */
+.video-section{padding:80px 0}
+.video-section.hidden{display:none}
+.video-header{text-align:center;margin-bottom:36px}
+.video-header .section-eye{justify-content:center}
+.video-header .section-eye::before{display:none}
+.video-header .section-sub{margin:0 auto;max-width:640px}
+.video-frame{max-width:980px;margin:0 auto;aspect-ratio:16/9;border-radius:18px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.55),0 0 60px rgba(59,184,175,.08);border:1px solid rgba(59,184,175,.22);background:#000}
+.video-frame video{width:100%;height:100%;object-fit:cover;display:block}
+
+/* ABOUT */
+.about-section{padding:90px 0}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.about-copy .section-eye{margin-bottom:14px}
+.founder-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:8px}
+.founder-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:6px}
+.founder-avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,rgba(59,184,175,.25),rgba(240,165,0,.18));border:1.5px solid rgba(59,184,175,.3);margin-bottom:10px;display:flex;align-items:center;justify-content:center;font-family:var(--head);font-weight:800;font-size:20px;color:var(--white);letter-spacing:-.02em}
+.founder-name{font-family:var(--head);font-size:16px;font-weight:800;color:var(--white)}
+.founder-title{font-size:12px;color:var(--teal);font-family:var(--mono);letter-spacing:.04em;text-transform:uppercase}
+.founder-bio{font-size:13.5px;color:var(--muted2);line-height:1.6;margin-top:6px}
+@media(max-width:1024px){.about-grid{grid-template-columns:1fr;gap:32px}.founder-grid{grid-template-columns:1fr}}
+
+/* PRICING */
+.pricing-section{padding:90px 0}
+.pricing-header{text-align:center;margin-bottom:36px}
+.pricing-header .section-eye{justify-content:center}
+.pricing-header .section-eye::before{display:none}
+.pricing-banner{display:flex;align-items:center;justify-content:center;gap:10px;margin:0 auto 36px;max-width:720px;padding:14px 22px;background:linear-gradient(135deg,rgba(240,165,0,.14),rgba(59,184,175,.08));border:1px solid rgba(240,165,0,.32);border-radius:100px;color:var(--gold2);font-weight:600;font-size:14.5px;letter-spacing:.01em}
+.pricing-banner strong{color:var(--white)}
+.pricing-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;max-width:880px;margin:0 auto}
+.price-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:32px 28px;display:flex;flex-direction:column;gap:14px;position:relative;transition:border-color .3s,transform .3s,box-shadow .3s}
+.price-card:hover{border-color:rgba(59,184,175,.3);transform:translateY(-3px);box-shadow:0 30px 80px rgba(0,0,0,.4),0 0 40px rgba(59,184,175,.08)}
+.price-card.featured{border-color:rgba(59,184,175,.35);background:linear-gradient(160deg,rgba(59,184,175,.08),rgba(255,255,255,.02))}
+.price-pill{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;background:rgba(240,165,0,.1);border:1px solid rgba(240,165,0,.3);color:var(--gold2);border-radius:100px;padding:4px 12px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase}
+.price-name{font-family:var(--head);font-size:22px;font-weight:800;color:var(--white);letter-spacing:-.02em}
+.price-amount{display:flex;align-items:baseline;gap:6px;margin-top:6px}
+.price-num{font-family:var(--head);font-size:48px;font-weight:800;color:var(--white);letter-spacing:-.04em}
+.price-cycle{font-size:14px;color:var(--muted2)}
+.price-features{list-style:none;padding:0;margin:8px 0 4px;display:flex;flex-direction:column;gap:9px}
+.price-features li{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--muted2)}
+.price-features li::before{content:"";width:5px;height:5px;background:var(--teal);border-radius:50%;flex-shrink:0}
+.price-card .btn-primary{margin-top:auto;text-align:center}
+@media(max-width:768px){.pricing-grid{grid-template-columns:1fr}}
+
+/* FAQ */
+.faq-section{padding:90px 0}
+.faq-header{text-align:center;margin-bottom:32px}
+.faq-header .section-eye{justify-content:center}
+.faq-header .section-eye::before{display:none}
+.faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.faq-item{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:14px;overflow:hidden;transition:border-color .25s}
+.faq-item.open{border-color:rgba(59,184,175,.3)}
+.faq-q{width:100%;background:none;border:0;color:var(--white);font-family:var(--head);font-weight:700;font-size:15px;text-align:left;padding:18px 22px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.faq-q::after{content:"+";font-family:var(--mono);color:var(--teal);font-size:22px;line-height:1;transition:transform .25s}
+.faq-item.open .faq-q::after{transform:rotate(45deg)}
+.faq-a{padding:0 22px;max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease;color:var(--muted2);font-size:14px;line-height:1.7}
+.faq-item.open .faq-a{padding:0 22px 18px;max-height:600px}
+
+/* CONTACT + SIGNUP */
+.contact-section,.signup-section{padding:90px 0}
+.contact-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:start}
+.contact-info{display:flex;flex-direction:column;gap:20px}
+.contact-info h3{font-family:var(--head);font-size:24px;font-weight:800;color:var(--white);letter-spacing:-.02em;margin:0}
+.contact-info p{color:var(--muted2);font-size:14.5px;line-height:1.7;margin:0}
+.contact-row{display:flex;align-items:center;gap:14px;color:var(--white);font-size:14.5px}
+.contact-row i{color:var(--teal);flex-shrink:0}
+.contact-row a{color:var(--white)}.contact-row a:hover{color:var(--teal)}
+.form-stack{display:flex;flex-direction:column;gap:14px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-field{display:flex;flex-direction:column;gap:6px}
+.form-field label{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.form-field input,.form-field textarea{background:rgba(7,11,20,.6);border:1px solid rgba(59,184,175,.18);border-radius:10px;padding:12px 14px;color:var(--white);font-family:var(--body);font-size:14px;transition:border-color .2s,background .2s}
+.form-field input:focus,.form-field textarea:focus{outline:none;border-color:var(--teal);background:rgba(59,184,175,.05)}
+.form-field textarea{min-height:120px;resize:vertical}
+.signup-card{background:rgba(255,255,255,.03);border:1px solid rgba(59,184,175,.18);border-radius:22px;padding:36px;max-width:580px;margin:0 auto}
+.signup-head{text-align:center;margin-bottom:24px}
+.signup-head h2{font-family:var(--head);font-size:32px;font-weight:800;color:var(--white);letter-spacing:-.03em;margin:0 0 8px}
+.signup-head p{color:var(--muted2);font-size:14.5px;margin:0}
+@media(max-width:768px){.contact-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}}
+
+/* PRESS */
+.press-section{padding:80px 0;text-align:center}
+.press-card{max-width:580px;margin:0 auto;padding:48px 32px;background:rgba(255,255,255,.03);border:1px dashed rgba(59,184,175,.25);border-radius:18px}
+.press-card .section-eye{justify-content:center;margin-bottom:14px}
+.press-card .section-eye::before{display:none}
+.press-card h2{font-family:var(--head);font-size:28px;font-weight:800;color:var(--white);letter-spacing:-.02em;margin:0 0 10px}
+.press-card p{color:var(--muted2);font-size:14.5px;line-height:1.7}
+
+/* COOKIE BANNER */
+.cookie-bar{position:fixed;bottom:18px;left:50%;transform:translateX(-50%) translateY(40px);max-width:680px;width:calc(100% - 32px);background:rgba(10,16,32,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(59,184,175,.22);border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:14px;color:var(--muted2);font-size:13.5px;line-height:1.5;box-shadow:0 24px 60px rgba(0,0,0,.5);opacity:0;transition:opacity .3s ease,transform .3s ease;z-index:9990}
+.cookie-bar.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.cookie-bar.hide{opacity:0;transform:translateX(-50%) translateY(40px)}
+.cookie-bar a{color:var(--teal);text-decoration:underline}
+.cookie-accept{background:linear-gradient(135deg,var(--teal),var(--cyan));color:#070B14;border:0;border-radius:8px;padding:8px 16px;font-weight:700;cursor:pointer;font-family:var(--body);font-size:13px;flex-shrink:0;transition:transform .2s,box-shadow .2s}
+.cookie-accept:hover{transform:translateY(-1px);box-shadow:0 0 24px rgba(59,184,175,.4)}
+@media(max-width:560px){.cookie-bar{flex-direction:column;align-items:stretch;text-align:center}}
+
+/* TOAST */
+.toast{position:fixed;bottom:30px;right:30px;background:rgba(10,16,32,.96);backdrop-filter:blur(14px);border:1px solid rgba(59,184,175,.32);border-radius:12px;padding:14px 22px;color:var(--white);font-size:14px;box-shadow:0 24px 60px rgba(0,0,0,.5);transform:translateY(20px);opacity:0;transition:transform .25s ease,opacity .25s ease;z-index:9999}
+.toast.show{transform:translateY(0);opacity:1}
 
 /* SCROLL REVEAL */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease}
@@ -490,27 +644,12 @@ footer{border-top:1px solid rgba(59,184,175,.08);padding:48px 0}
     <li><a href="#features">Features</a></li>
     <li><a href="#how-it-works">How It Works</a></li>
     <li><a href="#who-its-for">Who It's For</a></li>
-    <li><a href="#demo">Demo</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#faq">FAQ</a></li>
   </ul>
   <div class="nav-right">
-    <div class="login-dropdown" id="login-dropdown">
-      <button class="btn-ghost" id="login-btn">
-        Log In
-        <i data-lucide="chevron-down"></i>
-      </button>
-      <div class="login-menu">
-        <a href="https://home.getrx.com/prescriber/" class="login-item">
-          <div class="login-icon teal"><i data-lucide="user" style="width:14px;height:14px"></i></div>
-          <div><div class="login-label">Prescriber Login</div><div class="login-sub">Vets, surgeons, physicians</div></div>
-        </a>
-        <div class="login-divider"></div>
-        <div class="login-item disabled">
-          <div class="login-icon violet"><i data-lucide="smartphone" style="width:14px;height:14px"></i></div>
-          <div><div class="login-label">Patient Login</div><div class="login-sub">Coming soon</div></div>
-        </div>
-      </div>
-    </div>
-    <a href="https://home.getrx.com/prescriber/" class="btn-cta">Get Early Access</a>
+    <a href="https://www.getrx.com/prescribers/new" class="btn-ghost">Sign In</a>
+    <a href="#signup" class="btn-cta">Sign Up</a>
   </div>
   <button class="hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -522,10 +661,11 @@ footer{border-top:1px solid rgba(59,184,175,.08);padding:48px 0}
   <a href="#features">Features</a>
   <a href="#how-it-works">How It Works</a>
   <a href="#who-its-for">Who It's For</a>
-  <a href="#demo">Demo</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#faq">FAQ</a>
   <div class="mobile-actions">
-    <a href="https://home.getrx.com/prescriber/" class="btn-mob-login">Log In — Prescriber</a>
-    <a href="https://home.getrx.com/prescriber/" class="btn-mob-cta">Get Early Access</a>
+    <a href="https://www.getrx.com/prescribers/new" class="btn-mob-login">Sign In</a>
+    <a href="#signup" class="btn-mob-cta">Sign Up</a>
   </div>
 </div>
 
@@ -549,12 +689,12 @@ footer{border-top:1px solid rgba(59,184,175,.08);padding:48px 0}
     <div class="ticker-item"><span class="ticker-dot"></span>Average delivery time <span>&lt; 60 seconds</span></div>
     <div class="ticker-item"><span class="ticker-dot"></span>DEA compliant <span>21 CFR Part 1311</span></div>
     <div class="ticker-item"><span class="ticker-dot"></span>HIPAA certified <span>End-to-end encrypted</span></div>
-    <div class="ticker-item"><span class="ticker-dot"></span>Available on <span>iPhone · iPad · Web</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Available on <span>iPhone + Web</span></div>
     <div class="ticker-item"><span class="ticker-dot"></span>Prescriptions sent <span id="ticker-count2">12,847</span></div>
     <div class="ticker-item"><span class="ticker-dot"></span>Average delivery time <span>&lt; 60 seconds</span></div>
     <div class="ticker-item"><span class="ticker-dot"></span>DEA compliant <span>21 CFR Part 1311</span></div>
     <div class="ticker-item"><span class="ticker-dot"></span>HIPAA certified <span>End-to-end encrypted</span></div>
-    <div class="ticker-item"><span class="ticker-dot"></span>Available on <span>iPhone · iPad · Web</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Available on <span>iPhone + Web</span></div>
   </div>
 </div>
 
@@ -573,9 +713,9 @@ footer{border-top:1px solid rgba(59,184,175,.08);padding:48px 0}
         <span class="line"><span class="line-inner"><span class="grad-anim">controlled or standard,</span></span></span>
         <span class="line"><span class="line-inner">in under 60 seconds.</span></span>
       </h1>
-      <p class="hero-sub">getRx gives vets, surgeons, and traveling physicians a fully compliant digital prescription pad — including controlled substances. Instant delivery. Full compliance.</p>
+      <p class="hero-sub">getRx gives prescribers — vets, plastic surgeons, traveling physicians, and every other clinician — a fully compliant digital prescription pad. Including controlled substances. Instant delivery. Full compliance.</p>
       <div class="hero-actions">
-        <a href="https://home.getrx.com/prescriber/" class="btn-primary">Get Early Access</a>
+        <a href="#signup" class="btn-primary">Sign Up</a>
         <a href="#how-it-works" class="btn-outline">See How It Works <i data-lucide="arrow-right" style="width:15px;height:15px"></i></a>
       </div>
       <div class="hero-stats">
@@ -681,7 +821,7 @@ footer{border-top:1px solid rgba(59,184,175,.08);padding:48px 0}
       <div class="trust-sep"></div>
       <div class="trust-item">
         <div class="trust-icon"><i data-lucide="smartphone" style="width:20px;height:20px"></i></div>
-        <div><div class="trust-label">iPhone, iPad & Web</div><div class="trust-sub">Native iOS + full web access</div></div>
+        <div><div class="trust-label">iPhone + Web</div><div class="trust-sub">Native iOS + full web access</div></div>
       </div>
     </div>
   </div>
@@ -799,77 +939,62 @@ footer{border-top:1px solid rgba(59,184,175,.08);padding:48px 0}
 
 <div class="section-divider"></div>
 
-<!-- RX DEMO -->
+<!-- RX DEMO — scroll-pinned page-flip walkthrough -->
 <section class="demo-section" id="demo" style="scroll-margin-top:96px">
+  <div class="demo-scroll" id="demo-scroll">
+    <div class="demo-pin">
+      <div class="demo-grid">
+        <div class="demo-copy">
+          <div class="section-eye">See it in action</div>
+          <h2 class="section-head">Built around how prescribers <span class="grad-text">actually work.</span></h2>
+          <p class="section-sub" style="margin-bottom:24px">Scroll to step through the four screens that make a prescription happen — sign in, set up your profile, pick a patient, sign and send.</p>
+          <div class="demo-step-list" id="demo-steps">
+            <div class="demo-step active" data-i="0"><span class="demo-step-num">01</span><div><div class="demo-step-title">Sign in securely</div><div class="demo-step-desc">DEA + Authy 2FA, in seconds.</div></div></div>
+            <div class="demo-step" data-i="1"><span class="demo-step-num">02</span><div><div class="demo-step-title">Profile is your pad</div><div class="demo-step-desc">NPI, DEA #, signature — set once.</div></div></div>
+            <div class="demo-step" data-i="2"><span class="demo-step-num">03</span><div><div class="demo-step-title">Pick a patient</div><div class="demo-step-desc">Full Rx history, cancel or refill in one tap.</div></div></div>
+            <div class="demo-step" data-i="3"><span class="demo-step-num">04</span><div><div class="demo-step-title">Sign &amp; send</div><div class="demo-step-desc">Two-factor confirm, delivered to the pharmacy.</div></div></div>
+          </div>
+        </div>
+        <div class="demo-stage-wrap">
+          <div class="flip-stage" id="flip-stage" aria-roledescription="carousel" aria-label="getRx app screens">
+            <div class="flip-glow"></div>
+            <div class="flip-book" id="flip-book">
+              <div class="flip-page" data-i="0"><img src="assets/screens/login.png" alt="getRx login screen" loading="eager"></div>
+              <div class="flip-page" data-i="1"><img src="assets/screens/profile.png" alt="My Profile — DEA, NPI, signature" loading="eager"></div>
+              <div class="flip-page" data-i="2"><img src="assets/screens/patient-rx-list.png" alt="Patient Rx history with cancel option" loading="eager"></div>
+              <div class="flip-page" data-i="3"><img src="assets/screens/confirm-sign.png" alt="Confirm and sign controlled-substance prescription" loading="eager"></div>
+            </div>
+            <div class="flip-controls">
+              <button class="flip-prev" id="flip-prev" aria-label="Previous screen">‹</button>
+              <div class="flip-dots" id="flip-dots">
+                <span class="active" data-i="0" aria-label="Login"></span>
+                <span data-i="1" aria-label="Profile"></span>
+                <span data-i="2" aria-label="Patient list"></span>
+                <span data-i="3" aria-label="Confirm and sign"></span>
+              </div>
+              <button class="flip-next" id="flip-next" aria-label="Next screen">›</button>
+            </div>
+            <div class="flip-caption"><strong id="flip-label">01 — Login</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO MODULE — walkthrough video -->
+<section class="video-section" id="video" style="scroll-margin-top:96px">
   <div class="container">
-    <div class="demo-inner">
-      <div class="demo-left reveal">
-        <div class="section-eye">Live Demo</div>
-        <h2 class="section-head">Watch a prescription <span class="grad-text">write itself.</span></h2>
-        <p class="section-sub" style="margin-bottom:32px">The complete workflow — from patient lookup to pharmacy delivery — in real time. No phone calls. No hold music. No fax.</p>
-        <div class="demo-checks">
-          <div class="demo-check"><div class="demo-check-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>Standard and controlled substances — one workflow</div>
-          <div class="demo-check"><div class="demo-check-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>Stored, documented, printable — automatically</div>
-          <div class="demo-check"><div class="demo-check-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>DEA-verified, encrypted, timestamped delivery</div>
-        </div>
-      </div>
-      <div class="reveal reveal-d2">
-        <div class="demo-card">
-          <div class="demo-hdr">
-            <span class="demo-hdr-title">// new_prescription.rx</span>
-            <div class="demo-hdr-status"><span class="demo-hdr-dot"></span>Secure · DEA Verified</div>
-          </div>
-          <!-- Step dots -->
-          <div class="rx-steps">
-            <div class="rx-step-dot active" id="dot-1"></div>
-            <div class="rx-step-line"></div>
-            <div class="rx-step-dot" id="dot-2"></div>
-            <div class="rx-step-line"></div>
-            <div class="rx-step-dot" id="dot-3"></div>
-            <div class="rx-step-line"></div>
-            <div class="rx-step-dot" id="dot-4"></div>
-            <div class="rx-step-line"></div>
-            <div class="rx-step-dot" id="dot-5"></div>
-          </div>
-          <!-- Fields -->
-          <div class="rx-fields">
-            <div class="rx-field">
-              <div class="rx-flabel">// patient</div>
-              <div class="rx-fval" id="rx-patient">—</div>
-            </div>
-            <div class="rx-field">
-              <div class="rx-flabel">// medication</div>
-              <div class="rx-fval" id="rx-med">—</div>
-            </div>
-            <div class="rx-field">
-              <div class="rx-flabel">// instructions</div>
-              <div class="rx-fval" id="rx-dose">—</div>
-            </div>
-            <div class="rx-field">
-              <div class="rx-flabel">// pharmacy</div>
-              <div class="rx-fval" id="rx-pharmacy">—</div>
-            </div>
-            <div class="rx-field">
-              <div class="rx-flabel">// dea_verification</div>
-              <div class="rx-fval" id="rx-dea">—</div>
-            </div>
-          </div>
-          <div class="rx-progress-wrap">
-            <div class="rx-progress-bg"><div class="rx-progress-fill" id="rx-progress"></div></div>
-          </div>
-          <button class="rx-send" id="rx-send-btn">
-            <i data-lucide="send" style="width:14px;height:14px"></i>
-            Send Prescription
-          </button>
-          <!-- Overlay -->
-          <div class="rx-overlay" id="rx-overlay">
-            <div class="rx-success-icon"><i data-lucide="check" style="width:26px;height:26px"></i></div>
-            <div class="rx-success-title">Prescription Sent</div>
-            <div class="rx-success-sub">STATUS: DELIVERED<br>PHARMACY: CVS · 0.3mi<br>TIMESTAMP: <span id="rx-timestamp"></span></div>
-            <button class="rx-reset" id="rx-reset">Run it again →</button>
-          </div>
-        </div>
-      </div>
+    <div class="video-header reveal">
+      <div class="section-eye">Walkthrough</div>
+      <h2 class="section-head">Watch a real prescriber <span class="grad-text">set up and send.</span></h2>
+      <p class="section-sub">A short walkthrough of onboarding, writing a controlled prescription, and sending it.</p>
+    </div>
+    <div class="video-frame reveal reveal-d1">
+      <video controls preload="none" poster="assets/screens/confirm-sign.png">
+        <source src="assets/video/walkthrough.mp4" type="video/mp4">
+        Your browser does not support embedded video.
+      </video>
     </div>
   </div>
 </section>
@@ -898,7 +1023,7 @@ footer{border-top:1px solid rgba(59,184,175,.08);padding:48px 0}
       </div>
       <div class="feat-card reveal reveal-d2">
         <div class="feat-icon violet"><i data-lucide="smartphone" style="width:20px;height:20px"></i></div>
-        <div class="feat-title">iPhone, iPad &amp; Web</div>
+        <div class="feat-title">iPhone + Web</div>
         <div class="feat-desc">Native iOS app with full web access. Prescribe from clinic, field, or anywhere with a connection.</div>
       </div>
       <div class="feat-card reveal reveal-d1">
@@ -915,6 +1040,11 @@ footer{border-top:1px solid rgba(59,184,175,.08);padding:48px 0}
         <div class="feat-icon gold"><i data-lucide="shield" style="width:20px;height:20px"></i></div>
         <div class="feat-title">HIPAA by Design</div>
         <div class="feat-desc">End-to-end encryption, secure biometric authentication, and compliance documentation built into every interaction.</div>
+      </div>
+      <div class="feat-card reveal reveal-d1">
+        <div class="feat-icon"><i data-lucide="pen-tool" style="width:20px;height:20px"></i></div>
+        <div class="feat-title">Verifiable E-Signatures</div>
+        <div class="feat-desc">Every controlled-substance Rx signed with a DEA 21 CFR 1311–compliant electronic signature. Identity-verified, timestamped, and fully audit-trailed.</div>
       </div>
     </div>
   </div>
@@ -947,18 +1077,7 @@ footer{border-top:1px solid rgba(59,184,175,.08);padding:48px 0}
         <div class="aud-desc">Prescribe on the go from any location with your full roster, DEA credentials, and nationwide pharmacy access at your fingertips.</div>
       </div>
     </div>
-    <div class="coming-card reveal reveal-d1">
-      <div>
-        <div class="coming-tag"><span class="coming-pulse"></span>Coming Soon</div>
-        <div class="coming-title">Patient App with AI Concierge</div>
-        <div class="coming-sub">Bridge the gap between prescriber and patient with AI-powered Rx Q&amp;A, direct messaging, and smart pharmacy management.</div>
-      </div>
-      <div class="coming-features">
-        <div class="coming-feat"><span class="coming-feat-dot"></span>AI-powered Rx Q&amp;A for patients</div>
-        <div class="coming-feat"><span class="coming-feat-dot"></span>Direct prescriber-patient messaging</div>
-        <div class="coming-feat"><span class="coming-feat-dot"></span>Rx history &amp; pharmacy management</div>
-      </div>
-    </div>
+    <p class="audience-cap reveal reveal-d3" style="text-align:center;margin-top:36px;color:var(--muted2);font-size:14.5px;max-width:680px;margin-left:auto;margin-right:auto">Vets and plastic surgeons are who we built for first — but if you write prescriptions, getRx works for you.</p>
   </div>
 </section>
 
@@ -978,18 +1097,202 @@ footer{border-top:1px solid rgba(59,184,175,.08);padding:48px 0}
         <div class="vision-title">Real-Time, Anywhere</div>
         <div class="vision-desc">A vet in a pasture, a surgeon between procedures, a physician on a house call — getRx works wherever medicine is practiced. No boundaries.</div>
       </div>
-      <div class="vision-card vc-violet reveal reveal-d1">
-        <div class="vision-icon vi-violet"><i data-lucide="bot" style="width:20px;height:20px"></i></div>
-        <div class="vision-status vs-violet"><i data-lucide="clock" style="width:10px;height:10px"></i>Coming Soon</div>
-        <div class="vision-title">AI-Assisted Patient Care</div>
-        <div class="vision-desc">The gap between prescriber and patient gets bridged by AI — answering questions, flagging interactions, and keeping everyone on the same page.</div>
-      </div>
-      <div class="vision-card vc-gold reveal reveal-d2">
+      <div class="vision-card vc-gold reveal reveal-d1">
         <div class="vision-icon vi-gold"><i data-lucide="zap" style="width:20px;height:20px"></i></div>
         <div class="vision-status vs-gold"><i data-lucide="check-circle" style="width:10px;height:10px"></i>Live Now</div>
         <div class="vision-title">Full Controlled Substance Support</div>
         <div class="vision-desc">The first truly mobile-first platform for DEA-compliant controlled substance e-prescribing. Schedule II–V. All specialties. All states.</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<div class="section-divider"></div>
+
+<!-- ABOUT -->
+<section class="about-section" id="about" style="scroll-margin-top:96px">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-copy reveal">
+        <div class="section-eye">About getRx</div>
+        <h2 class="section-head">Built by a doctor for <span class="grad-text">doctors.</span></h2>
+        <p class="section-sub">getRx is a mobile prescription platform that powers healthier lifestyles, faster and more conveniently. It connects prescribers with more than 55,000 pharmacies across the US — letting you send any prescription, including controlled substances, in under 60 seconds.</p>
+        <p class="section-sub" style="margin-top:14px">Founded by a practicing physician and a healthcare attorney, the platform was built around the way prescribing actually works in the field — not the way insurance forms wish it did.</p>
+      </div>
+      <div class="founder-grid reveal reveal-d2">
+        <div class="founder-card">
+          <div class="founder-avatar">DR</div>
+          <div class="founder-name">Dan Rudd, M.D.</div>
+          <div class="founder-title">Co-founder</div>
+          <div class="founder-bio">Internal medicine physician with 30+ years of practice in Tennessee. Cedar Grove Medical Associates, Smyrna, TN.</div>
+        </div>
+        <div class="founder-card">
+          <div class="founder-avatar">EH</div>
+          <div class="founder-name">Edward A. Hadley</div>
+          <div class="founder-title">Co-founder</div>
+          <div class="founder-bio">Healthcare attorney at Aero Legal Advocates, PLC. Nashville, TN.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing" style="scroll-margin-top:96px">
+  <div class="container">
+    <div class="pricing-header reveal">
+      <div class="section-eye">Pricing</div>
+      <h2 class="section-head">Simple, per-prescriber <span class="grad-text">pricing.</span></h2>
+      <p class="section-sub">Patients use getRx for free. Prescribers pick the plan that matches their volume.</p>
+    </div>
+    <div class="pricing-banner reveal reveal-d1">🔥 First 100 prescribers — <strong>30 days free.</strong></div>
+    <!-- DEV: $299 Premium tier pending legal/finance sign-off; add a third .price-card here when approved. -->
+    <div class="pricing-grid">
+      <div class="price-card reveal reveal-d1">
+        <div class="price-pill">30-day free trial</div>
+        <div class="price-name">Professional</div>
+        <div class="price-amount"><span class="price-num">$99</span><span class="price-cycle">/ month</span></div>
+        <ul class="price-features">
+          <li>Single prescriber</li>
+          <li>100 prescriptions free / month</li>
+          <li>Mobile + web prescribing</li>
+          <li>Pharmacy &amp; drug database</li>
+          <li>Approve refill requests</li>
+          <li>Controlled substances (Schedule II–V)</li>
+        </ul>
+        <a href="#signup" class="btn-primary">Sign Up</a>
+      </div>
+      <div class="price-card featured reveal reveal-d2">
+        <div class="price-pill">30-day free trial</div>
+        <div class="price-name">Professional Plus</div>
+        <div class="price-amount"><span class="price-num">$199</span><span class="price-cycle">/ month</span></div>
+        <ul class="price-features">
+          <li>Single prescriber</li>
+          <li>300 prescriptions free / month</li>
+          <li>Everything in Professional</li>
+          <li>Priority support</li>
+          <li>Direct Trust certified workflow</li>
+        </ul>
+        <a href="#signup" class="btn-primary">Sign Up</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq" style="scroll-margin-top:96px">
+  <div class="container">
+    <div class="faq-header reveal">
+      <div class="section-eye">FAQ</div>
+      <h2 class="section-head">The questions <span class="grad-text">prescribers ask.</span></h2>
+    </div>
+    <div class="faq-list reveal reveal-d1">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">What devices does getRx run on?</button>
+        <div class="faq-a">getRx runs on iPhone (native iOS app) and on the web. Android and iPad support are not available at this time.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Which states is it available in?</button>
+        <div class="faq-a">All 50 states.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Which pharmacies can receive prescriptions?</button>
+        <div class="faq-a">Any of the 55,000+ pharmacies across the US for standard prescriptions. For controlled substances, getRx delivers to a growing network of 22,000+ pharmacies including Walgreens, Albertsons, and Costco — with more partners coming online in 2026.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Is getRx DEA compliant for Schedule II–V?</button>
+        <div class="faq-a">Yes. getRx is built to DEA 21 CFR Part 1311 standards for electronic prescribing of controlled substances. Direct Trust certification is in progress.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">How is two-factor authentication handled?</button>
+        <div class="faq-a">getRx uses Authy for two-factor authentication on every controlled-substance prescription, in line with DEA EPCS requirements.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Does it integrate with my EMR?</button>
+        <div class="faq-a">No — getRx is a standalone prescription platform, not an EMR add-on. Your prescription history and patient roster live inside getRx.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Is it HIPAA compliant?</button>
+        <div class="faq-a">Yes. getRx is HIPAA compliant and uses end-to-end encryption for every prescription and message.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">How fast is onboarding?</button>
+        <div class="faq-a">About five minutes. Have your NPI, DEA number, and a photo ID ready and you'll be up and running.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">What does it cost?</button>
+        <div class="faq-a">Plans start at $99/month (Professional, 100 prescriptions free) or $199/month (Professional Plus, 300 prescriptions free). The first 100 prescribers get a 30-day free trial.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SIGNUP — DEV: wire form action to your account-creation endpoint -->
+<section class="signup-section" id="signup" style="scroll-margin-top:96px">
+  <div class="container">
+    <div class="signup-card reveal">
+      <div class="signup-head">
+        <h2>Create your account</h2>
+        <p>Have your NPI, DEA #, and ID ready — onboarding takes about 5 minutes.</p>
+      </div>
+      <form class="form-stack" data-signup-stub="true" action="#" method="post" novalidate>
+        <div class="form-row">
+          <div class="form-field"><label for="su-name">Full Name</label><input id="su-name" name="name" type="text" required></div>
+          <div class="form-field"><label for="su-practice">Practice</label><input id="su-practice" name="practice" type="text"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-field"><label for="su-npi">NPI Number</label><input id="su-npi" name="npi" type="text" inputmode="numeric"></div>
+          <div class="form-field"><label for="su-dea">DEA Number</label><input id="su-dea" name="dea" type="text"></div>
+        </div>
+        <div class="form-field"><label for="su-email">Email</label><input id="su-email" name="email" type="email" required></div>
+        <div class="form-field"><label for="su-pass">Password</label><input id="su-pass" name="password" type="password" required></div>
+        <button type="submit" class="btn-primary" style="margin-top:6px">Create Account</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact" style="scroll-margin-top:96px">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="section-eye">Contact</div>
+        <h3>Talk to us.</h3>
+        <p>Questions about pricing, compliance, onboarding, or controlled substances? Drop us a line and we'll get back within one business day.</p>
+        <div class="contact-row"><i data-lucide="mail" style="width:18px;height:18px"></i><a href="mailto:info@getrx.com">info@getrx.com</a></div>
+        <div class="contact-row"><i data-lucide="map-pin" style="width:18px;height:18px"></i><span>301 Wolverine Trail, Suite 100<br>Smyrna, TN 37167</span></div>
+      </div>
+      <form class="form-stack reveal reveal-d1" data-form="contact" action="mailto:info@getrx.com" method="post" enctype="text/plain">
+        <div class="form-field"><label for="c-name">Name</label><input id="c-name" name="name" type="text" required></div>
+        <div class="form-field"><label for="c-email">Email</label><input id="c-email" name="email" type="email" required></div>
+        <div class="form-field"><label for="c-org">Practice / Organization</label><input id="c-org" name="org" type="text"></div>
+        <div class="form-field"><label for="c-msg">Message</label><textarea id="c-msg" name="message" required></textarea></div>
+        <button type="submit" class="btn-primary">Send</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PRESS -->
+<section class="press-section" id="press" style="scroll-margin-top:96px">
+  <div class="container">
+    <div class="press-card reveal">
+      <div class="section-eye">Press</div>
+      <h2>Coming soon.</h2>
+      <p>Press coverage and certifications will be published here. For media inquiries, email <a href="mailto:info@getrx.com" style="color:var(--teal)">info@getrx.com</a>.</p>
     </div>
   </div>
 </section>
@@ -1004,10 +1307,10 @@ footer{border-top:1px solid rgba(59,184,175,.08);padding:48px 0}
       <div class="cta-glow2"></div>
       <div class="cta-eye"><span class="eyebrow-dot"></span>Full release coming — including controlled substance support</div>
       <h2 class="cta-heading">Ready to prescribe<br><span class="grad-anim">smarter?</span></h2>
-      <p class="cta-sub">Join vets, surgeons, and physicians already saving time every day with getRx — now with full controlled substance support.</p>
+      <p class="cta-sub">Join the prescribers already saving time every day with getRx — now with full controlled substance support. First 100 prescribers get 30 days free.</p>
       <div class="cta-actions">
-        <a href="https://home.getrx.com/prescriber/" class="btn-primary">Get Early Access</a>
-        <a href="https://home.getrx.com/contact-us/" class="btn-outline">Contact Us <i data-lucide="arrow-right" style="width:15px;height:15px"></i></a>
+        <a href="#signup" class="btn-primary">Sign Up</a>
+        <a href="#contact" class="btn-outline">Contact Us <i data-lucide="arrow-right" style="width:15px;height:15px"></i></a>
       </div>
     </div>
   </div>
@@ -1015,48 +1318,68 @@ footer{border-top:1px solid rgba(59,184,175,.08);padding:48px 0}
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
-    <div>
+  <div class="footer-grid">
+    <div class="footer-col footer-brand">
       <div class="footer-logo">
-        <div class="logo-mark" style="width:34px;height:34px;border-radius:9px">
-          <svg viewBox="0 0 36 36" fill="none" style="width:24px;height:24px">
+        <div class="logo-mark" style="width:38px;height:38px;border-radius:10px">
+          <svg viewBox="0 0 36 36" fill="none" style="width:26px;height:26px">
             <text x="4" y="14" font-family="'Plus Jakarta Sans',sans-serif" font-weight="800" font-size="9" fill="#3BB8AF">get</text>
             <polygon points="18,16 31,32 5,32" fill="#F0A500" opacity=".92"/>
             <text x="18" y="29" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-weight="800" font-size="8" fill="#070B14">Rx</text>
           </svg>
         </div>
         <div>
-          <div class="logo-text" style="font-size:17px"><span class="lt">get</span><span class="lo">Rx</span></div>
+          <div class="logo-text" style="font-size:18px"><span class="lt">get</span><span class="lo">Rx</span></div>
           <div class="logo-tagline">Prescriptions, reimagined</div>
         </div>
       </div>
-      <div class="footer-copy">© 2026 getRx — All rights reserved.</div>
+      <p class="footer-addr">301 Wolverine Trail, Suite 100<br>Smyrna, TN 37167</p>
+      <p class="footer-addr"><a href="mailto:info@getrx.com">info@getrx.com</a></p>
+      <div class="footer-socials">
+        <a href="https://www.linkedin.com/company/10018569" aria-label="LinkedIn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19 0H5a5 5 0 0 0-5 5v14a5 5 0 0 0 5 5h14a5 5 0 0 0 5-5V5a5 5 0 0 0-5-5zM8 19H5V8h3v11zM6.5 6.7a1.8 1.8 0 1 1 0-3.6 1.8 1.8 0 0 1 0 3.6zM20 19h-3v-5.6c0-3.4-4-3.1-4 0V19h-3V8h3v1.8c1.4-2.6 7-2.8 7 2.5V19z"/></svg></a>
+        <a href="https://twitter.com/getRx_app" aria-label="Twitter / X" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231zM17.083 19.77h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg></a>
+        <a href="https://www.facebook.com/pages/getRx/608379842637864" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12S0 5.446 0 12.073c0 5.99 4.388 10.954 10.125 11.854V15.54H7.078v-3.467h3.047V9.43c0-3.007 1.792-4.668 4.533-4.668 1.312 0 2.686.234 2.686.234v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.467h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="https://www.youtube.com/channel/UC0qZTZmlqs8oZxpxQ2ve2Yw" aria-label="YouTube" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+      </div>
     </div>
-    <nav class="footer-links">
-      <a href="https://home.getrx.com/us/">About</a>
-      <a href="https://home.getrx.com/pricing-information/">Pricing</a>
-      <a href="https://home.getrx.com/faq-2/">FAQ</a>
-      <a href="https://home.getrx.com/news/">Press</a>
-      <a href="https://home.getrx.com/contact-us/">Contact</a>
-    </nav>
+    <div class="footer-col">
+      <div class="footer-h">Product</div>
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#demo">See it in action</a>
+      <a href="#pricing">Pricing</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-h">Company</div>
+      <a href="#about">About</a>
+      <a href="#press">Press</a>
+      <a href="#contact">Contact</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-h">Account</div>
+      <a href="https://www.getrx.com/prescribers/new">Sign In</a>
+      <a href="#signup">Sign Up</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#terms">Terms</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 getRx — All rights reserved.</div>
+    <div class="footer-copy">DEA 21 CFR Part 1311 compliant · HIPAA · Direct Trust certified</div>
   </div>
 </footer>
 
 <script>
-/* LOGIN DROPDOWN */
-const loginBtn=document.getElementById('login-btn');
-const loginDrop=document.getElementById('login-dropdown');
-if(loginBtn&&loginDrop){
-  loginBtn.setAttribute('aria-expanded','false');
-  loginBtn.addEventListener('click',e=>{
-    e.preventDefault();
-    const open=loginDrop.classList.toggle('open');
-    loginBtn.setAttribute('aria-expanded',String(open));
+/* FAQ ACCORDION */
+document.querySelectorAll('.faq-item').forEach(item=>{
+  const q=item.querySelector('.faq-q');
+  if(!q)return;
+  q.addEventListener('click',()=>{
+    const open=item.classList.toggle('open');
+    q.setAttribute('aria-expanded',String(open));
   });
-  document.addEventListener('click',e=>{
-    if(!loginDrop.contains(e.target)){loginDrop.classList.remove('open');loginBtn.setAttribute('aria-expanded','false');}
-  });
-}
+});
 
 /* HAMBURGER */
 const ham=document.getElementById('hamburger');
@@ -1174,72 +1497,103 @@ document.querySelectorAll('.feat-card').forEach(card=>{
   });
 });
 
-/* RX DEMO */
-const rxData={
-  patient:'Sarah M. — DOB 04/12/1985',
-  med:'Hydrocodone 5mg / Acetaminophen 325mg',
-  dose:'1 tab q6h PRN pain · #30 · No refills',
-  pharmacy:'CVS Pharmacy #4821 — 0.3mi · Verified',
-  dea:'DEA-2FA VERIFIED · Schedule II · Encrypted'
-};
-function typeText(el,text,speed=22){
-  return new Promise(res=>{
-    el.textContent='';el.classList.add('typing');let i=0;
-    const t=setInterval(()=>{el.textContent+=text[i++];if(i>=text.length){clearInterval(t);el.classList.remove('typing');res()}},speed);
+/* SCROLL-DRIVEN PAGE-FLIP — pinned demo section */
+(function scrollFlip(){
+  const wrap=document.getElementById('demo-scroll');
+  const stage=document.getElementById('flip-stage');
+  if(!wrap||!stage)return;
+  const pages=[...stage.querySelectorAll('.flip-page')];
+  const dots=[...stage.querySelectorAll('.flip-dots span')];
+  const steps=[...document.querySelectorAll('#demo-steps .demo-step')];
+  const label=document.getElementById('flip-label');
+  const labels=['01 — Login','02 — Profile','03 — Patients & Rx','04 — Confirm & Sign'];
+  const N=pages.length;
+  let raf=null,manualIdx=null,manualUntil=0;
+  // remove transition for the continuous-mode pages (we drive transform directly)
+  pages.forEach(p=>{p.style.transition='transform .35s cubic-bezier(.6,.04,.3,1), box-shadow .6s ease';});
+  function applyContinuous(t){
+    pages.forEach((page,i)=>{
+      const local=Math.max(0,Math.min(1,t-i));
+      const deg=-178*local;
+      page.style.transform=`rotateY(${deg}deg)`;
+      page.classList.toggle('flipped',local>=.5);
+    });
+    const idx=Math.max(0,Math.min(N-1,Math.round(t)));
+    dots.forEach((d,i)=>d.classList.toggle('active',i===idx));
+    steps.forEach((s,i)=>s.classList.toggle('active',i===idx));
+    if(label)label.textContent=labels[idx];
+  }
+  function update(){
+    raf=null;
+    // manual override (clicked prev/next/dot) — snap to chosen page for ~1.2s, then resume scroll
+    if(manualIdx!==null && performance.now()<manualUntil){
+      applyContinuous(manualIdx);
+      return;
+    }
+    manualIdx=null;
+    const r=wrap.getBoundingClientRect();
+    const total=wrap.offsetHeight-window.innerHeight;
+    const p=Math.max(0,Math.min(1,total>0?-r.top/total:0));
+    const t=p*(N-1);
+    applyContinuous(t);
+  }
+  function schedule(){if(raf===null)raf=requestAnimationFrame(update);}
+  window.addEventListener('scroll',schedule,{passive:true});
+  window.addEventListener('resize',schedule);
+
+  function snapTo(i){
+    manualIdx=Math.max(0,Math.min(N-1,i));
+    manualUntil=performance.now()+1400;
+    schedule();
+    // also scroll the section so resumed scroll-driven sync is at the right spot
+    const r=wrap.getBoundingClientRect();
+    const total=wrap.offsetHeight-window.innerHeight;
+    const targetTop=window.scrollY+r.top+(manualIdx/(N-1))*total;
+    window.scrollTo({top:targetTop,behavior:'smooth'});
+  }
+  document.getElementById('flip-next').addEventListener('click',()=>{
+    const cur=Math.round(((-wrap.getBoundingClientRect().top)/(wrap.offsetHeight-window.innerHeight))*(N-1));
+    snapTo(Math.min(N-1,cur+1));
   });
-}
-const dots=[document.getElementById('dot-1'),document.getElementById('dot-2'),document.getElementById('dot-3'),document.getElementById('dot-4'),document.getElementById('dot-5')];
-function setDot(idx){dots.forEach((d,i)=>{d.classList.remove('active','done');if(i<idx)d.classList.add('done');if(i===idx)d.classList.add('active')})}
-async function runRxDemo(){
-  const prog=document.getElementById('rx-progress');
-  const btn=document.getElementById('rx-send-btn');
-  const overlay=document.getElementById('rx-overlay');
-  ['rx-patient','rx-med','rx-dose','rx-pharmacy','rx-dea'].forEach(id=>document.getElementById(id).textContent='—');
-  prog.style.width='0%';btn.classList.remove('ready');
-  btn.innerHTML='<i data-lucide="send" style="width:14px;height:14px"></i> Send Prescription';
-  lucide.createIcons();
-  overlay.classList.remove('visible');
-  setDot(0);
-  await new Promise(r=>setTimeout(r,600));
-  await typeText(document.getElementById('rx-patient'),rxData.patient,20);setDot(1);prog.style.width='20%';
-  await new Promise(r=>setTimeout(r,300));
-  await typeText(document.getElementById('rx-med'),rxData.med,22);setDot(2);prog.style.width='40%';
-  await new Promise(r=>setTimeout(r,300));
-  await typeText(document.getElementById('rx-dose'),rxData.dose,20);setDot(3);prog.style.width='60%';
-  await new Promise(r=>setTimeout(r,300));
-  await typeText(document.getElementById('rx-pharmacy'),rxData.pharmacy,24);setDot(4);prog.style.width='80%';
-  await new Promise(r=>setTimeout(r,300));
-  await typeText(document.getElementById('rx-dea'),rxData.dea,18);prog.style.width='100%';
-  await new Promise(r=>setTimeout(r,700));
-  btn.classList.add('ready');
-  await new Promise(r=>setTimeout(r,500));
-  btn.innerHTML='<i data-lucide="check-circle" style="width:14px;height:14px"></i> Sending...';
-  lucide.createIcons();
-  await new Promise(r=>setTimeout(r,900));
-  const now=new Date();
-  document.getElementById('rx-timestamp').textContent=now.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
-  overlay.classList.add('visible');
-}
-async function runRxDemoInstant(){
-  const prog=document.getElementById('rx-progress');
-  const btn=document.getElementById('rx-send-btn');
-  ['rx-patient','rx-med','rx-dose','rx-pharmacy','rx-dea'].forEach((id,i)=>{
-    document.getElementById(id).textContent=Object.values(rxData)[i];
+  document.getElementById('flip-prev').addEventListener('click',()=>{
+    const cur=Math.round(((-wrap.getBoundingClientRect().top)/(wrap.offsetHeight-window.innerHeight))*(N-1));
+    snapTo(Math.max(0,cur-1));
   });
-  prog.style.width='100%';
-  dots.forEach((d,i)=>{d.classList.remove('active','done');if(i<4)d.classList.add('done');if(i===4)d.classList.add('active')});
-  btn.classList.add('ready');
-}
-const demoObs=new IntersectionObserver(entries=>{
-  if(entries[0].isIntersecting){reducedMotion?runRxDemoInstant():runRxDemo();demoObs.disconnect()}
-},{threshold:.15});
-const demoEl=document.getElementById('demo');
-if(demoEl)demoObs.observe(demoEl);
-const resetBtn=document.getElementById('rx-reset');
-if(resetBtn)resetBtn.addEventListener('click',()=>{
-  document.getElementById('rx-overlay').classList.remove('visible');
-  setTimeout(runRxDemo,400);
-});
+  dots.forEach(d=>d.addEventListener('click',()=>snapTo(+d.dataset.i)));
+  steps.forEach(s=>s.addEventListener('click',()=>snapTo(+s.dataset.i)));
+  update();
+})();
+
+/* COOKIE CONSENT — single dismissable banner */
+(function cookies(){
+  if(localStorage.getItem('getrx_consent'))return;
+  const bar=document.createElement('div');
+  bar.className='cookie-bar';
+  bar.innerHTML='<span>We use cookies to keep this site running and improve your experience. By using getRx you agree to our <a href="#privacy">Privacy</a>.</span><button class="cookie-accept">Got it</button>';
+  document.body.appendChild(bar);
+  bar.querySelector('.cookie-accept').addEventListener('click',()=>{
+    localStorage.setItem('getrx_consent','1');
+    bar.classList.add('hide');
+    setTimeout(()=>bar.remove(),300);
+  });
+  setTimeout(()=>bar.classList.add('show'),200);
+})();
+
+/* SIGNUP STUB — show a toast on submit so dev demos look complete */
+(function signupStub(){
+  const f=document.querySelector('form[data-signup-stub]');
+  if(!f)return;
+  f.addEventListener('submit',e=>{
+    e.preventDefault();
+    const t=document.createElement('div');
+    t.className='toast';
+    t.textContent='Thanks — we’ll be in touch shortly.';
+    document.body.appendChild(t);
+    requestAnimationFrame(()=>t.classList.add('show'));
+    setTimeout(()=>{t.classList.remove('show');setTimeout(()=>t.remove(),300);},3500);
+    f.reset();
+  });
+})();
 
 /* INIT ICONS */
 lucide.createIcons();
