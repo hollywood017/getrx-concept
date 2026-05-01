@@ -374,7 +374,16 @@ section{position:relative;z-index:1}
 .flip-caption strong{color:var(--teal);font-weight:500}
 .flip-glow{position:absolute;inset:-60px;background:radial-gradient(ellipse,rgba(59,184,175,.1) 0%,transparent 65%);border-radius:50%;pointer-events:none;animation:halo-pulse 5s ease-in-out infinite;z-index:-1}
 @media(max-width:1024px){.flip-stage{max-width:280px}.flip-caption{bottom:-96px}}
-@media(max-width:480px){.flip-stage{max-width:240px}.flip-controls{bottom:-50px}.flip-prev,.flip-next{width:34px;height:34px;font-size:18px}}
+/* mobile/tablet: controls + caption flow under the stage so they aren't covered by the next section */
+@media(max-width:1024px){
+  .flip-stage{margin-bottom:90px}
+  .flip-stage .flip-controls{position:static;transform:none;margin:20px auto 0;width:-moz-fit-content;width:fit-content;pointer-events:auto;bottom:auto;left:auto}
+  .flip-stage .flip-caption{position:static;margin:12px 0 0;bottom:auto;left:auto;right:auto;text-align:center}
+  .flip-stage .flip-prev,.flip-stage .flip-next{width:44px;height:44px;font-size:22px}
+  .flip-stage .flip-dots span{width:8px;height:8px}
+  .flip-stage .flip-dots span.active{width:24px}
+}
+@media(max-width:480px){.flip-stage{max-width:240px;margin-bottom:80px}}
 
 /* FEATURES */
 .feat-section{padding:110px 0}
