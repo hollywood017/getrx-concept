@@ -1,3 +1,6 @@
 .claude/
 .DS_Store
 Thumbs.db
+
+# Internal handoff / planning docs — never ship to dev team
+*HANDOFF*.md
