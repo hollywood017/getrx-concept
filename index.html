@@ -488,6 +488,10 @@ footer{border-top:1px solid rgba(59,184,175,.08);padding:64px 0 32px}
 .footer-socials a:hover{background:rgba(59,184,175,.14);border-color:rgba(59,184,175,.4);color:var(--teal);transform:translateY(-1px)}
 .footer-bottom{max-width:1200px;margin:48px auto 0;padding:24px 40px 0;border-top:1px solid rgba(59,184,175,.08);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
 .footer-copy{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.06em}
+.footer-built{max-width:1200px;margin:18px auto 0;padding:16px 40px 4px;text-align:center;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.footer-built a{color:var(--muted2);transition:color .2s}
+.footer-built a:hover{color:var(--teal)}
+@media(max-width:768px){.footer-built{padding:12px 24px 4px;font-size:9.5px;letter-spacing:.12em}}
 @media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;gap:32px}.footer-brand{grid-column:span 2}.footer-bottom{flex-direction:column;align-items:flex-start}}
 
 /* VIDEO MODULE */
@@ -1445,6 +1449,9 @@ body.modal-open{overflow:hidden}
   <div class="footer-bottom">
     <div class="footer-copy">© 2026 getRx — All rights reserved.</div>
     <div class="footer-copy">DEA 21 CFR Part 1311 compliant · HIPAA · Direct Trust certified</div>
+  </div>
+  <div class="footer-built">
+    Built by <a href="https://stackandsignal.agency" target="_blank" rel="noopener">stackandsignal.agency</a>
   </div>
 </footer>
 
