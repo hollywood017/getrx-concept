@@ -422,7 +422,7 @@ section{position:relative;z-index:1}
 .vision-header{text-align:center;margin-bottom:56px}
 .vision-header .section-eye{justify-content:center}
 .vision-header .section-eye::before{display:none}
-.vision-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.vision-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;max-width:780px;margin:0 auto}
 .vision-card{border-radius:22px;padding:36px 32px;position:relative;overflow:hidden;cursor:default;transition:transform .3s,box-shadow .3s}
 .vision-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,.3)}
 .vision-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px}
