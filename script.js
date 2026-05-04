@@ -133,7 +133,7 @@ document.querySelectorAll('.feat-card').forEach(card=>{
   const dots=[...stage.querySelectorAll('.flip-dots span')];
   const steps=[...document.querySelectorAll('#demo-steps .demo-step')];
   const label=document.getElementById('flip-label');
-  const labels=['01 — Login','02 — Profile','03 — Patients & Rx','04 — Confirm & Sign'];
+  const labels=['01 Login','02 Profile','03 Patients & Rx','04 Verify Controlled Substance'];
   const N=pages.length;
   const mq=matchMedia('(max-width:1024px)');
   const isMobile=()=>mq.matches;

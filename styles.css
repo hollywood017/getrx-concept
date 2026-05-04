@@ -494,6 +494,7 @@ footer{border-top:1px solid rgba(59,184,175,.08);padding:64px 0 32px}
 .pricing-header{text-align:center;margin-bottom:36px}
 .pricing-header .section-eye{justify-content:center}
 .pricing-header .section-eye::before{display:none}
+.pricing-header .section-sub{margin:0 auto;text-align:center}
 .pricing-banner{display:flex;align-items:center;justify-content:center;gap:10px;margin:0 auto 36px;max-width:720px;padding:14px 22px;background:linear-gradient(135deg,rgba(240,165,0,.14),rgba(59,184,175,.08));border:1px solid rgba(240,165,0,.32);border-radius:100px;color:var(--gold2);font-weight:600;font-size:14.5px;letter-spacing:.01em}
 .pricing-banner strong{color:var(--white)}
 .pricing-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;max-width:880px;margin:0 auto}
