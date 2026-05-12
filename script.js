@@ -226,7 +226,7 @@ document.querySelectorAll('.feat-card').forEach(card=>{
 
 /* LEGAL MODAL — Privacy / Terms / ID Verification footer links open here */
 (function legalModal(){
-  const KEYS={'#privacy':'tpl-privacy','#terms':'tpl-terms','#identity-verification':'tpl-identity-verification'};
+  const KEYS={'#privacy':'tpl-privacy','#terms':'tpl-terms','#identity-verification':'tpl-identity-verification','#direct-trust-cert':'tpl-direct-trust-cert'};
   const modal=document.getElementById('modal');
   const body=document.getElementById('modal-body');
   if(!modal||!body)return;
